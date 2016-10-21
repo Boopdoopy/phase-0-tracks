@@ -1,0 +1,43 @@
+h1{
+  position:absolute;
+  z-index: 2;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: purple;
+  font-style: ;
+  font-stretch: semi-expanded;
+  font-style: italic;
+  left:55px;
+  background-color: yellow;
+  border-radius: 100px;
+  border-color: orange;
+  border-style: dotted;
+
+}
+h1:hover {
+  transform: rotate(30deg);;
+}
+
+#hat{
+  position: absolute;
+  z-index:-1;
+  top:0px;
+
+
+
+}
+
+#octo{
+  position:absolute;
+  z-index:-2;
+  left:15px;
+  top:90px;
+
+
+}
+
+#glass{
+  position:absolute;
+  top:188px;
+  left:55px;
+
+}
