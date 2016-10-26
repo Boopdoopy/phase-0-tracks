@@ -1,0 +1,197 @@
+Elevator using Robot
+(for use when Elevator location and designation floor is known)
+
+-Navigate to Elevator location
+-Set button_found to false
+-Set the rotation_counter at 0 degrees
+-Set horizontal_counter to 0 meters
+-Set sagittal_counter to 0 meters
+-Until button_found is true
+  -Rotate 5 degrees clockwise
+  -Add 5 degrees to rotation_counter
+   -If door is forward
+
+    -Until contact with door
+      -move forward 0.1 meters
+      -add 0.1 meters to sagittal_counter
+
+     -Until button_found is true or no door are forward and
+      horizontal_counter is less than 0 repeat    
+
+      -If horizontal counter is greater than or equal to 0
+        -Strafe right 0.5 meters
+        -Add 0.5 to horizontal counter
+
+        -If there are buttons inset in wall forward
+          -button_found is true
+
+        -If no door is forward and horizontal_counter is 
+         greater than 0
+          -Set rotation_counter to 
+          tan^-1(sagital_counter/horizontal_counter) degrees 
+          -Strafe left distance equal to horizontal counter + 0.01 m
+          -Set horizontal counter to -0.01
+
+      -If horizontal counter is less than 0
+        -Strafe left 0.5 meters
+        -Subtract 0.5 from horizontal counter
+
+        -If there are buttons inset in wall forward
+          -button_found is true
+    
+  -Set horizontal_counter to absolute_value of horizontal_counter
+  -Rotate 90 degrees + Tan^-1(sagital_counter/horizontal_counter) clockwise
+  -Move forward until at Elevator location
+  -Rotate 180 degree's minus rotation_counter counter clockwise
+  -Set horizontal_counter and sagittal_counter to 0
+
+-If current_floor - destination_floor is < 0
+ -press the top button
+-If current_floor - destination_floor is > 0
+ -press bottom button
+-Else
+ -Give up
+
+-Move backwards sagittal_counter meters
+-If horizontal_counter is < 0
+   -Strafe right horizontal_counter meters
+-If horizontal_counter is >= 0
+    -Strafe left horizontal_counter meters
+
+-Until inside_elevator is true.
+ -If no lights are lit above doors
+   -rotate 180 degrees
+   -count 5 seconds
+ -If current_floor - destination_floor is < 0 and Left most 
+  light above door is lit
+    -Strafe until door is in front of you
+    -If there are no people inside
+      -Move forward until past door
+      -inside_elevator is true
+    -Else
+      -If people are moving towards you
+       -Count 7
+       -Move forward until past door
+       -inside_elevator is true
+
+ -If current_floor - destination_floor is > 0
+    -Strafe until door is in front of you
+    -If there are no people inside
+      -Move forward until past door
+      -inside_elevator is true
+    -Else
+      -If people are moving towards you
+       -Count 7
+       -Move forward until past door
+       -inside_elevator is true
+  -Else
+    -Repeat
+
+-Rotate 180 degrees clockwise
+  -If there are other people in elevator
+    -Say "Can you hit" + destination_floor
+  -Else strafe right until you hit a wall
+  
+  -If there are < 4 buttons on the wall in-front of you
+   -Strafe left until you hit a wall
+
+  -If there are > 4 buttons
+    -Compare each button label to destination_floor
+    -On a match hit that button
+
+Until outside_elevator is true
+  -Wait
+  -If elevator doors are open
+   -Compare display against destination floor
+    -On match exit elevator
+    -outside_elevator is true
+  -If people enter the elevator
+    -Say "I am a robot and bad at elevators can you hit" +designation floor
+  -Else repeat
+
+_________________________________________________________
+
+  Algorithm in my life
+
+  -Set snooze_counter to 0
+  -If alarm is going off and snooze_counter is less than 4
+    -snooze alarm
+    -go back to sleep
+  -Else
+    -grumble
+    -climb out of bed
+  -Put pants, slippers, and coat on
+  -Check coat for cigarettes
+    -If cigarettes in hand is true
+      -Exit room
+    -Else
+      -Recursive search of clothing and desk
+      -Repeat and broaden search
+  -Grab electric kettle and sauce pot
+  -Fill them with water
+  -Set kettle to boil
+  -Open fridge
+    -If eggs is true
+      -Take 2 eggs
+      -Put them in sauce pot
+      -Turn on burner to 5
+    -Else
+      -Grumble
+      -Close fridge
+      -Mental note:"buy eggs"
+      -Pour out sauce pot
+  -Open Cabinet
+    -If coffee is true
+      -Pull out coffee
+      -Put coffee on counter
+    -Else
+      -Grumble
+      -Close cabinet
+      -Mental note:"buy coffee"
+      -Pour out kettle
+  -Go outside and smoke
+    -If coffee is grounds
+      -Put exactly 4 tbs in french press
+    -If coffee is bean
+      -Pour a haphazard amount into grinder
+      -Grind coarse
+      -Pour contents into french press
+-If coffee and/or eggs are true
+  -Until eggs and/or coffee are done
+    -If pot is boiling
+      -Turn off burner
+      -Cover
+      -Set timer to 7 min.
+    -If kettle is boiling
+      -Pick up kettle
+      -Pour boiling water into french press
+      -Stir a couple times
+      -Put top on
+    -If timer is going off
+      -If pot is the all metal one
+        -put on mitt
+      -Else
+        -Pour water into sink without losing eggs
+        -Turn on cold tap
+        -Fill pot and empty twice
+        -Pick up eggs with paper towel
+        -Plunge coffee and pour into mug
+        -Turn off that ear-piercing timer
+-Grab apple
+-Sit on porch
+-Drink Coffee
+-Eat eggs
+-Eat apple
+
+
+
+
+
+    
+
+
+
+
+
+
+
