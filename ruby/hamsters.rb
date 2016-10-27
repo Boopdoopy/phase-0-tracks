@@ -6,37 +6,40 @@
 
 #Ask (gets.chomp, .to_i getf? getb?)
 
-ham_name = ""
-squeak_vol =  0
-fur_color = ""
-good_can_1 = ""
-candidate = true
-est_age = 0.0
-placeholder_nm = ""
+#ham_name = ""
+#squeak_vol = 0
+#fur_color = ""
+#good_can_1 = ""
+#candidate = true
+#est_age = 0.0
+#placeholder_nm = ""
 i = 1
 
+puts "What's the hamster's name? If none put N/A"
+ham_name = gets.chomp 
+ham_name = ham_name.downcase
 
-ham_name = gets.chomp "Otherwise N/A"
-
-ham_name = hamster_name.downcase
-
-if ham_name == "N/A"
+placeholder_nm = "Hamstar the #{i}"
+if ham_name == "n/a"
   ham_name = placeholder_nm
   i = i + 1  
 end
 
-placeholder_nm = "Hamstar the #{i}"
+puts "On a scale of 1-10 how loud is this hamster?"
+squeak_vol = gets.chomp 
 
-squeak_vol = gets.to_i ""
+squeak_vol = squeak_vol.to_i
 
-fur_color = gets.chomp ""
+puts "What color is this hamster's fur"
+fur_color = gets.chomp 
 
-good_can1 = gets.chomp "y/n"
+puts "Good candidate for adoption? (y/n)"
+good_can1 = gets.chomp 
 
-if good_can1 == y
+if good_can1 == "y"
   candidate = true
 
-elsif good_can1 == n  
+elsif good_can1 == "n"  
   candidate = false
 
 else
@@ -44,9 +47,17 @@ else
 
 end
 
-est_age = gets.to_f ""
+puts "How old is this hamster if unknown put N/A"
+est_age = gets.chomp 
+est_age = est_age.downcase
 
-puts "Name:#{ham_name}/n Volume:#{squeak_vol}/n Fur color:#{squeak_vol}/n Candidate:#{candidate}/n Estimated Age::#{est_age}/n"
+if est_age == "n/a"
+  est_age = nil
+else
+  est_age = est_age.to_f
+end 
+
+puts "\<-------------\>\n Hamster data \n\<-------------\>\n \n Name:#{ham_name}\n Volume:#{squeak_vol}\n Fur color:#{fur_color}\n Candidate:#{candidate}\n Estimated Age:#{est_age}\n"
 
 
 
