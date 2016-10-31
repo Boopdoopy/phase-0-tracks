@@ -37,6 +37,12 @@
 #Realized I was way over my head to submit for the deadline
 
 $employee = []
+$name = ""
+$job = ""
+$age = ""
+$yob = ""
+$food = ""
+$health = ""
 
 
 def survey
@@ -103,62 +109,23 @@ def survey
 end
 #Drake Cula” or “Tu Fang”
 
-def vamp_checker(a)
-#make string usable
-#define local variables
-  comma_count = 0
-  n = ""
-  b = ""
-  c = ""
-  d = ""
-  e = ""
-#loop through backwards constructing separate strings
-#remember that each will be reversed
-#haha! prepend!
-  while a.length > 1 do
-    
-    case a[-1] == (",") 
-      when true
-        comma_count += 1
-      
-      else
-        case comma_count 
-          when 0
-          e.prepend(a.slice(-1))
-      
-          when 1
-          d.prepend(a.slice(-1))
-          
-
-          when 2
-          c.prepend(a.slice(-1))
-          
-
-          when 3
-          b.prepend(a.slice(-1))
-          
-
-          when 4
-          n.prepend(a.slice(-1))
-          
-        end
-      end
-    a = a.chop!
-  end
-#puts " #{n}\n #{b}\n #{c}\n #{d}\n #{e}\n"
-#track vampire status
-  vamp_status = 0
-  case
-  when n.reversed ==
-  when c.reversed ==
-  when d.reversed ==
-  when e.reversed == 
-  else
-
-  end
+def vamp_checker(a=$name,j=$job,b=$age,c=$yob,d=$food,e=$health)
+vamp_status = 0
+    if a == "Drake Ula" or a == "Tu Fang"
+      vamp_status +=5
+    end
+    if 2016 - b.to_i != c.to_i
+      vamp_status +=2
+    end
+    if d == "false"
+      vamp_status +=1
+    end
+    if e == "false"
+      vamp_status +=1
+    end
 
 #return analysis
-  puts "Employee Analysis Complete \n Name: #{n}\n Position: #{b}\n"
+  puts "Employee Analysis Complete \n Name: #{a}\n Position: #{j}\n"
     case  
     when vamp_status > 4
       puts "Definitely a vampire."
@@ -174,10 +141,58 @@ end
 
 end
 
+a = survey.join(",")
 
-$employee = survey
+#massive slowdown and freezes, too many nested functions :/
+#huh after some research it seems like a dynamic freeze
+#threads are still active and its still pulling a TON of memory
+#guessing its locked in a bad loop or something?
+#make string usable
+#define local variables
+comma_count = 0
+#loop through backwards constructing separate strings
+#remember that each will be reversed
+#haha! prepend!
+  while a.length > 1 do
+    
+    case a[-1] == (",") 
+      when true
+        comma_count += 1
+      
+      else
+        case comma_count 
+          when 0
+          $health.prepend(a.slice(-1))
+      
+          when 1
+          $food.prepend(a.slice(-1))
+          
 
-vamp_checker($employee.join(","))
+          when 2
+          $yob.prepend(a.slice(-1))
+          
+
+          when 3
+          $age.prepend(a.slice(-1))
+          
+
+          when 4
+          $job.prepend(a.slice(-1))
+
+        end
+      a = a.chop!
+      end
+    $name = a
+    
+  end
+
+#puts " #{n}\n #{b}\n #{c}\n #{d}\n #{e}\n"
+#track vampire status
+#went with case first; however, if then seemed to make more sense for
+#variables
+  
+
+vamp_checker()
 
 
 
