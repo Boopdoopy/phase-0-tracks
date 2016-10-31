@@ -2,19 +2,33 @@
 
 #original initialize parameters switching to an array
 #nme, job, age, year, garlic, health_insur
+#mkay, need to understand splat operator better
 class Employee
   def initialize (*a)
-    i = 0
+    #i = 0
 #Chose count over the myriad of other options because I read ahead in the 
 #release a little. And it seemed from research to be useful. We'll find out! :)
-    surv_lengt = a.count{}
-    while surv_lengt
-    @ee_nme = nme
-    @ee_job = job
-    @ee_age = age
-    @ee_year = year
-    @ee_garlic = garlic
-    @ee_health_insur = health_insur
+    #whoop not necessary.... actually ee_nme is holding all values lol
+    #shift might be what I'm looking for
+
+    @ee_nme = a.shift
+    @ee_job = a.shift
+    @ee_age = a.shift
+    @ee_year = a.shift
+    @ee_garlic = a.shift
+    @ee_health_insur = a.shift
+  end
+
+#ran into a bit of an issue with returning the values. 
+#Another class function should help with that ~or~ end up 
+#teaching me how to build a better mousetrap lol
+   def details()
+    puts "Name:  #@ee_nme"
+    puts "Position: #@ee_job"
+    puts "Age: #@ee_age"
+    puts "Year of birth: #@ee_year"
+    puts "Garlic bread lover: #@ee_garlic"
+    puts "Health insurance interest: #@ee_health_insur"
   end
 end
 
@@ -24,26 +38,26 @@ def survey
 
   puts "What is your name?" 
   nme = gets.chomp
-  result[0] = nme
+  result.push(nme) 
   #return nme
   puts "That's a nice name"
 
   
   puts "What is your new position here?"
   job = gets.chomp
-  result[1] = job
+  result.push(job)
   #return job
   puts "We need more of those around here!" 
   
   puts "How old are you?"
   age = gets.chomp
-  result[2] = age.to_i
+  result.push(age.to_i)
   #return age
   puts "Age is just a number!"
   
   puts "What year were you born?"
   year = gets.chomp
-  result[3] = year.to_i
+  result.push(year.to_i)
 
   #return year
   puts "Best time to be alive"
@@ -52,16 +66,16 @@ def survey
   garlic = gets.chomp
   garlic = garlic.downcase
     if garlic == "y"
-        result[4] = true
+        result.push(true)
         #return garlic
         "I know, right?"
 
-  elsif health_insur == "n"
-        result[4] = false
+  elsif garlic == "n"
+        result.push(false)
         #return garlic
         "I know, right?"
   else
-        result[4] = nil
+        result.push(nil)
         #return garlic
         puts "Error. Please speak to your survey technician"
 
@@ -71,14 +85,14 @@ def survey
   health_insur = gets.chomp
   health_insur = health_insur.downcase
   if health_insur == "y"
-    result[5] = true
+    result.push(true)
   elsif health_insur == "n"
-    result[5] = false
+    result.push(false)
   else
-    result[5] = nil
+    result.push(nil)
     puts "Error. Please speak to your survey technician"
   end
-  return result
+  return result.slice(0..5)
 end
 
 
@@ -86,7 +100,10 @@ end
 
 employee1 = Employee.new (survey)
 
-puts employee1
+employee1.details
+
+
+
 
 
 
