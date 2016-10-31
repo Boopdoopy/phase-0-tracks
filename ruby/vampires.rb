@@ -45,6 +45,7 @@ $food = ""
 $health = ""
 
 
+
 def survey
   result = []
   puts "Welcome new employee! \n We have a quick survey for you to fill out \n (It's mandatory)"
@@ -127,72 +128,89 @@ vamp_status = 0
 #return analysis
   puts "Employee Analysis Complete \n Name: #{a}\n Position: #{j}\n"
     case  
-    when vamp_status > 4
-      puts "Definitely a vampire."
-    when vamp_status == 4
-      puts "Almost certainly a vampire."
-    when vamp_status >= 2 < 4
-      puts "Probably a vampire."
-    when vamp_status < 2
-      puts "Probably not a vampire."
-    else
-      puts "Results inconclusive." 
+      when vamp_status > 4
+        puts "Definitely a vampire."
+      when vamp_status == 4
+        puts "Almost certainly a vampire."
+      when vamp_status >= 2 < 4
+        puts "Probably a vampire."
+      when vamp_status < 2
+        puts "Probably not a vampire."
+      else
+        puts "Results inconclusive." 
+    end
 end
 
-end
+$employee = (survey())
+a = $employee.join(",")
 
-a = survey.join(",")
+#puts "#{a}"
 
 #massive slowdown and freezes, too many nested functions :/
 #huh after some research it seems like a dynamic freeze
 #threads are still active and its still pulling a TON of memory
 #guessing its locked in a bad loop or something?
+#aight not the input
+
+
 #make string usable
 #define local variables
-comma_count = 0
+
 #loop through backwards constructing separate strings
 #remember that each will be reversed
 #haha! prepend!
+  
+comma_count = 0
+
   while a.length > 1 do
+
     
-    case a[-1] == (",") 
-      when true
+    if a[-1] == ","
         comma_count += 1
       
-      else
+    else
         case comma_count 
           when 0
           $health.prepend(a.slice(-1))
+          puts "#{comma_count}"
       
           when 1
           $food.prepend(a.slice(-1))
+          puts "#{comma_count}"
           
 
           when 2
           $yob.prepend(a.slice(-1))
+          puts "#{comma_count}"
           
 
           when 3
           $age.prepend(a.slice(-1))
+          puts "#{comma_count}"
           
 
           when 4
           $job.prepend(a.slice(-1))
+          puts "#{comma_count}"
+
+          else
+          $name = a - ","
+          puts "#{comma_count}"
+
 
         end
       a = a.chop!
-      end
-    $name = a
+    end
     
   end
 
+puts "#{$name}"
 #puts " #{n}\n #{b}\n #{c}\n #{d}\n #{e}\n"
 #track vampire status
 #went with case first; however, if then seemed to make more sense for
 #variables
   
 
-vamp_checker()
 
 
 
