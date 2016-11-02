@@ -32,3 +32,25 @@
 # Print the latest version of the hash, and exit the program.
 
 
+
+#iterate through hash prompting with key and getsing that value
+  #pref and ombre need seperate cases
+#convert user input to appropriate data type
+#fill in that value
+#print the hash
+#ask user if they want to add a key (y/n)
+#if y create new key (turn into symbol) and prompt for value
+#print the hash
+
+#|key,value| puts "What is your #{key}?"
+
+
+int_designer = {
+  :name = ,
+  :address = ,
+  :email = ,
+  :phone_number = ,
+  :favorite_shade_of_blue = ,
+  :wallpaper_preference = ,
+  :opinion_of_ombre = ,
+}
