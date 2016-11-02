@@ -4,29 +4,29 @@
 # When there's more than one suspect who could have
 # committed the crime, add additional calls to prove it.
 
-"iNvEsTiGaTiOn".swapcase
+q1 = "iNvEsTiGaTiOn".swapcase
 # => “InVeStIgAtIoN”
 
-"zom".insert(1,"o")
+q2 = "zom".insert(1,"o")
 # => “zoom”
 
 #Ah cjust should be center
-"enhance".center(4)
+q3 =  "enhance".center(15," ")
 # => "    enhance    "
 
-"Stop! You’re under arrest!".upcase
+q4 = "Stop! You’re under arrest!".upcase
 # => "STOP! YOU’RE UNDER ARREST!"
 
-"the usual".concat(" suspects")
+q5 = "the usual".concat(" suspects")
 #=> "the usual suspects"
 
-" suspects".prepend("the usual")
+q6 = " suspects".prepend("the usual")
 # => "the usual suspects"
 
-"The case of the disappearing last letter".slice(0..-2)
+q7 = "The case of the disappearing last letter".slice(0..-2)
 # => "The case of the disappearing last lette"
 
-"The mystery of the missing first letter".(1..-1)
+q8 = "The mystery of the missing first letter".slice(1..-1)
 # => "he mystery of the missing first letter"
 
 # Almost fell down a regular expression hole for this one haha
@@ -39,13 +39,26 @@
 #Need to do more research
 #"Elementary,    my   dear        Watson!".sub(/+[" "]/g/," ") was not working
 
-"Elementary,    my   dear        Watson!".squeeze(" ")
+q9 = "Elementary,    my   dear        Watson!".squeeze(" ")
 # => "Elementary, my dear Watson!"
 
-"z".ord
+q10 = "z".ord
 # => 122 
 # (What is the significance of the number 122 in relation to the character z?)
 # It's the specific ordinal index of that character
 
-"How many times does the letter 'a' appear in this string?".count("a")
+q11 = "How many times does the letter 'a' appear in this string?".count("a")
 # => 4
+
+#show my results!
+puts "#{q1}"
+puts "#{q2}"
+puts "#{q3}"
+puts "#{q4}"
+puts "#{q5}"
+puts "#{q6}"
+puts "#{q7}"
+puts "#{q8}"
+puts "#{q9}"
+puts "#{q10}"
+puts "#{q11}"
