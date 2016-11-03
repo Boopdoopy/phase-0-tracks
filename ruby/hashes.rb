@@ -46,22 +46,22 @@
 
 
 int_designer = {
-  :name => " ",
-  :address => " ",
-  :email => " ",
-  :phone_number => " ",
-  :favorite_shade_of_blue => " ",
-  :wallpaper_preference => " ",
-  :opinion_of_ombre => " ",
+  :'Name' => " ",
+  :'Address' => " ",
+  :'Email' => " ",
+  :'Phone number' => " ",
+  :'Favorite shade of blue' => " ",
+  :'Wallpaper preference' => " ",
+  :'Opinion of Ombre' => " ",
 }
 
 int_designer.each do |key,value|
       case key
 
-        when :wallpaper_preference
+        when :'Wallpaper preference'
           puts "What is your #{key}?\n(A)Paisley?\n(B)Chevrons?\n(C)Photorealistic woodsy scenes (with or without squirrels)?\n(D)Abstract woodsy scenes (no squirrels)?"
           puts "Submit all that apply in order [Example:ACD]"
-        when :opinion_of_ombre
+        when :'Opinion of Ombre'
           puts "What is your #{key}?"
           puts "(1)Is it Fierce?\n(2)So last season?\n(3)Practically medieval in its appalling irrelevance?\n"
         else
@@ -72,20 +72,27 @@ int_designer.each do |key,value|
   end
 
   int_designer.each do |key,value|
-    if key == :phone_number
+    if key == :'Phone number'
       #may have to add a way to only keep string numbers and discard ./-() etc
       @value = value.to_i
       int_designer[key] = @value
-    
+
+    elsif key == :'Opinion of Ombre'
+      case value
+        when "1"
+          int_designer[key] = "Fierce!"
+        when "2"
+          int_designer[key] = "so last season"
+        when "3"
+          int_designer[key] = "practically medieval in its appalling irrelevance?"        
+      end
       
     end
 
 
-
-
   end
 
-  int_designer.each {|key,value| puts "#{key}  is  #{value}\n"}
+  int_designer.each {|key,value| puts "#{key} ------------ #{value}\n"}
 
   #p int_designer[:phone_number]/2
   #p "5"
