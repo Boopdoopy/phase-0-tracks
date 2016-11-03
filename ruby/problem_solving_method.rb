@@ -27,31 +27,30 @@ def fibo(input_i)
   return @output_array
 end
 
-def alphabetize (string)
-alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+def integerize (array_i)
+# alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 counter = 0
-# fully_sorted == false
-str_array = string.split(//)
-str_array.each do |letter|
-  letter_id = alphabet.find_index(letter)
-  #issues for a and z?
-  right = str_array[counter+1]
-  left = str_array[counter-1]
+# # fully_sorted == false
+# array_i[counter-1] = string.split(//)
+array_i.each do |index|
+  array_i[counter]
 
-  right = alphabet.find_index(right)
-  left = alphabet.find_index(left)
+   while index <= array_i[counter-1] || index >= array_i[counter+1]
+        if index <= array_i[counter-1]
+         array_i[counter], array_i[counter+1] = array_i[counter+1], array_i[counter]
+        end
+        elsif index >= array_i[counter+1]
+           array_i[counter], array_i[counter-1] = array_i[counter-1], array_i[counter]
+        end#unless???????
+   end
 
-  unless letter_id >= right && letter_id <= left
-      case letter_id
-        when <= right
-          str_array[counter], str_array[counter+1] = str_array[counter+1], str_array[counter]
-        when >= left
-          str_array[counter], str_array[counter-1] = str_array[counter-1], str_array[counter]
-      end
       counter += 1
-    end
-  end
-end
+
+ end#do
+
+end #def
+
+p intergerize(tester)g
    
 
   #get letter
