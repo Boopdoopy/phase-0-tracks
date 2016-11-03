@@ -59,8 +59,8 @@ int_designer.each do |key,value|
       case key
 
         when :wallpaper_preference
-          puts "What is your #{key}?\n(1)Paisley?\n(2)Chevrons?\n(3)Photorealistic woodsy scenes (with or without squirrels)?\n(4)Abstract woodsy scenes (no squirrels)?"
-          puts "Put all that apply in order [Example:134]"
+          puts "What is your #{key}?\n(A)Paisley?\n(B)Chevrons?\n(C)Photorealistic woodsy scenes (with or without squirrels)?\n(D)Abstract woodsy scenes (no squirrels)?"
+          puts "Submit all that apply in order [Example:ACD]"
         when :opinion_of_ombre
           puts "What is your #{key}?"
           puts "(1)Is it Fierce?\n(2)So last season?\n(3)Practically medieval in its appalling irrelevance?\n"
@@ -72,39 +72,58 @@ int_designer.each do |key,value|
   end
 
   int_designer.each do |key,value|
-      case key
-        when :phone_number
-          int_designer.store (key, value.to_i)
-        when :wallpaper_preference
-          @new_value = ""
-          #aight so we have 1, 12, 13, 14, 123, 124, 134, 1234
-            if value.count("1") > 0
-              @new_value += "Paisley, "
-            end
-            if value.count("2") > 0
-              @new_value += "Chevrons, "
-            end
-            if value.count("3") > 0
-              @new_value += "Photorealistic woodsy scenes (with or without squirrels), "
-            end
-            if value.count("4") > 0
-              @new_value += "Abstract woodsy scenes (no squirrels), "
-            end
-          int_designer.store (key, @new_value)
-          #Currently worried about case jumping
-        when :opinion_of_ombre
-          case value
-            when "1"
-              int_designer.store (key, "Fierce")
-            when "2"
-              
-          end
+    if key == :phone_number
+      #may have to add a way to only keep string numbers and discard ./-() etc
+      @value = value.to_i
+      int_designer[key] = @value
+    
+      
+    end
 
-        end
 
-      end
+
+
+  end
 
   int_designer.each {|key,value| puts "#{key}  is  #{value}\n"}
+
+  #p int_designer[:phone_number]/2
+  #p "5"
+      
+
+      # case key
+      #   when :phone_number
+      #     int_designer.store (key, value.to_i)
+      #   when :wallpaper_preference
+      #     @new_value = ""
+      #     #aight so we have 1, 12, 13, 14, 123, 124, 134, 1234
+      #       if value.count("1") > 0
+      #         @new_value += "Paisley, "
+      #       end
+      #       if value.count("2") > 0
+      #         @new_value += "Chevrons, "
+      #       end
+      #       if value.count("3") > 0
+      #         @new_value += "Photorealistic woodsy scenes (with or without squirrels), "
+      #       end
+      #       if value.count("4") > 0
+      #         @new_value += "Abstract woodsy scenes (no squirrels), "
+      #       end
+      #     int_designer.store (key, @new_value)
+      #     #Currently worried about case jumping
+      #   when :opinion_of_ombre
+      #     case value
+      #       when "1"
+      #         int_designer.store (key, "Fierce")
+      #       when "2"
+
+      #     end
+
+      #   end
+
+      # end
+
+  
 
 
 
