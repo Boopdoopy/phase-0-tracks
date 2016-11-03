@@ -60,7 +60,7 @@ int_designer.each do |key,value|
 
         when :wallpaper_preference
           puts "What is your #{key}?\n(1)Paisley?\n(2)Chevrons?\n(3)Photorealistic woodsy scenes (with or without squirrels)?\n(4)Abstract woodsy scenes (no squirrels)?"
-          puts "Put all that apply [Example:134]"
+          puts "Put all that apply in order [Example:134]"
         when :opinion_of_ombre
           puts "What is your #{key}?"
           puts "(1)Is it Fierce?\n(2)So last season?\n(3)Practically medieval in its appalling irrelevance?\n"
@@ -70,6 +70,39 @@ int_designer.each do |key,value|
     int_designer.store( key, gets.chomp)
     puts "<~-~-~-~-~-~-~-~-~-~-~-~-~-~-~>"
   end
+
+  int_designer.each do |key,value|
+      case key
+        when :phone_number
+          int_designer.store (key, value.to_i)
+        when :wallpaper_preference
+          @new_value = ""
+          #aight so we have 1, 12, 13, 14, 123, 124, 134, 1234
+            if value.count("1") > 0
+              @new_value += "Paisley, "
+            end
+            if value.count("2") > 0
+              @new_value += "Chevrons, "
+            end
+            if value.count("3") > 0
+              @new_value += "Photorealistic woodsy scenes (with or without squirrels), "
+            end
+            if value.count("4") > 0
+              @new_value += "Abstract woodsy scenes (no squirrels), "
+            end
+          int_designer.store (key, @new_value)
+          #Currently worried about case jumping
+        when :opinion_of_ombre
+          case value
+            when "1"
+              int_designer.store (key, "Fierce")
+            when "2"
+              
+          end
+
+        end
+
+      end
 
   int_designer.each {|key,value| puts "#{key}  is  #{value}\n"}
 
