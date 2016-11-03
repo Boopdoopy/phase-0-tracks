@@ -46,11 +46,36 @@
 
 
 int_designer = {
-  :name = ,
-  :address = ,
-  :email = ,
-  :phone_number = ,
-  :favorite_shade_of_blue = ,
-  :wallpaper_preference = ,
-  :opinion_of_ombre = ,
+  :name => " ",
+  :address => " ",
+  :email => " ",
+  :phone_number => " ",
+  :favorite_shade_of_blue => " ",
+  :wallpaper_preference => " ",
+  :opinion_of_ombre => " ",
 }
+
+int_designer.each do |key,value|
+      case key
+
+        when :wallpaper_preference
+          puts "What is your #{key}?\n(1)Paisley?\n(2)Chevrons?\n(3)Photorealistic woodsy scenes (with or without squirrels)?\n(4)Abstract woodsy scenes (no squirrels)?"
+          puts "Put all that apply [Example:134]"
+        when :opinion_of_ombre
+          puts "What is your #{key}?"
+          puts "(1)Is it Fierce?\n(2)So last season?\n(3)Practically medieval in its appalling irrelevance?\n"
+        else
+          puts "What is your #{key}?"
+      end
+    int_designer.store( key, gets.chomp)
+    puts "<~-~-~-~-~-~-~-~-~-~-~-~-~-~-~>"
+  end
+
+  int_designer.each {|key,value| puts "#{key}  is  #{value}\n"}
+
+
+
+
+
+
+
