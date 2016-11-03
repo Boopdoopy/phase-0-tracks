@@ -84,15 +84,28 @@ int_designer.each do |key,value|
         when "2"
           int_designer[key] = "so last season"
         when "3"
-          int_designer[key] = "practically medieval in its appalling irrelevance?"        
+          int_designer[key] = "practically medieval in its appalling irrelevance"        
       end
-      
     end
-
-
   end
 
-  int_designer.each {|key,value| puts "#{key} ------------ #{value}\n"}
+  $wallpaper_array = int_designer[:'Wallpaper preference'].split(//)
+  $wallpaper_array.map! do |pref|
+        case pref
+          when "A"
+            pref = "Paisley"
+          when "B"
+            pref = "Chevrons"
+          when "C"
+            pref = "Photorealistic woodsy scenes (w\/ or w\/o squirrels)"
+          when "D"
+            pref = "Abstract woodsy scenes (no squirrels)"
+        end
+      end
+  int_designer[:'Wallpaper preference'] = $wallpaper_array.join(", ")
+
+  puts  "<~-~-~-~-~-~-~-Results-~-~-~-~-~-~-~>"
+  int_designer.each {|key,value| puts "---- #{key} ----\n #{value}\n"}
 
   #p int_designer[:phone_number]/2
   #p "5"
