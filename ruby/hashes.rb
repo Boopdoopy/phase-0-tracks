@@ -1,24 +1,5 @@
-# INTERIOR DESIGNER JOB APPLICATION
 
-# Name: __________________________________________
-# Address: _______________________________________
-# Email: _________________________________________
-# Phone: _________________________________________
-
-# Fave shade of blue: ____________________________
-
-# Wallpaper preferences (check any that apply):
-# ▢ Paisley
-# ▢ Chevrons
-# ▢ Photorealistic woodsy scenes (with or without squirrels)
-# ▢ Abstract woodsy scenes (no squirrels)
-
-# Ombre is:
-# ◯ Fierce
-# ◯ So last season
-# ◯ Practically medieval in its appalling irrelevance
-
-#Psuedocode
+#Psuedocode ( for scratch work comments see bottom)
 
 # Initialize a hash
 # Prompt the designer/user for all of this information.
@@ -42,10 +23,10 @@
 #if y create new key (turn into symbol) and prompt for value
 #print the hash
 
-#|key,value| puts "What is your #{key}?"
 
 
-int_designer = {
+#Global variables and methods
+$int_designer = {
   :'Name' => " ",
   :'Address' => " ",
   :'Email' => " ",
@@ -55,7 +36,19 @@ int_designer = {
   :'Opinion of Ombre' => " ",
 }
 
-int_designer.each do |key,value|
+$key_response = ""
+
+$wallpaper_array = []
+
+  def results()
+  puts  "<~-~-~-~-~-~-~-Results-~-~-~-~-~-~-~>"
+  $int_designer.each {|key,value| puts "---- #{key} ----\n #{value}\n"}
+  puts  "====================================="
+  end
+
+
+#Driver code
+$int_designer.each do |key,value|
       case key
 
         when :'Wallpaper preference'
@@ -67,29 +60,30 @@ int_designer.each do |key,value|
         else
           puts "What is your #{key}?"
       end
-    int_designer.store( key, gets.chomp)
+      response = gets.chomp
+    $int_designer.store( key, response)
     puts "<~-~-~-~-~-~-~-~-~-~-~-~-~-~-~>"
   end
 
-  int_designer.each do |key,value|
+  $int_designer.each do |key,value|
     if key == :'Phone number'
       #may have to add a way to only keep string numbers and discard ./-() etc
       @value = value.to_i
-      int_designer[key] = @value
+      $int_designer[key] = @value
 
     elsif key == :'Opinion of Ombre'
       case value
         when "1"
-          int_designer[key] = "Fierce!"
+          $int_designer[key] = "Fierce!"
         when "2"
-          int_designer[key] = "so last season"
+          $int_designer[key] = "so last season"
         when "3"
-          int_designer[key] = "practically medieval in its appalling irrelevance"        
+          $int_designer[key] = "practically medieval in its appalling irrelevance"        
       end
     end
   end
 
-  $wallpaper_array = int_designer[:'Wallpaper preference'].split(//)
+  $wallpaper_array = $int_designer[:'Wallpaper preference'].split(//)
   $wallpaper_array.map! do |pref|
         case pref
           when "A"
@@ -102,14 +96,28 @@ int_designer.each do |key,value|
             pref = "Abstract woodsy scenes (no squirrels)"
         end
       end
-  int_designer[:'Wallpaper preference'] = $wallpaper_array.join(", ")
+  $int_designer[:'Wallpaper preference'] = $wallpaper_array.join(", ")
 
-  puts  "<~-~-~-~-~-~-~-Results-~-~-~-~-~-~-~>"
-  int_designer.each {|key,value| puts "---- #{key} ----\n #{value}\n"}
+  results()
+  
+  puts "New category to add?? Write the name here!"
+  $key_response = gets.chomp
+  $key_response = $key_response.downcase
 
-  #p int_designer[:phone_number]/2
-  #p "5"
+  unless $key_response == "none"
+    @key = $key_response.to_sym
+    puts "and how do you feel about #{$key_response}?"
+    @value = gets.chomp
+    $int_designer[@key] = @value
+  end
+
+  results()
       
+# def results
+  # puts  "<~-~-~-~-~-~-~-Results-~-~-~-~-~-~-~>"
+  # int_designer.each {|key,value| puts "---- #{key} ----\n #{value}\n"}
+  # puts  "====================================="
+  # end
 
       # case key
       #   when :phone_number
@@ -142,6 +150,27 @@ int_designer.each do |key,value|
       #   end
 
       # end
+
+# INTERIOR DESIGNER JOB APPLICATION
+
+# Name: __________________________________________
+# Address: _______________________________________
+# Email: _________________________________________
+# Phone: _________________________________________
+
+# Fave shade of blue: ____________________________
+
+# Wallpaper preferences (check any that apply):
+# ▢ Paisley
+# ▢ Chevrons
+# ▢ Photorealistic woodsy scenes (with or without squirrels)
+# ▢ Abstract woodsy scenes (no squirrels)
+
+# Ombre is:
+# ◯ Fierce
+# ◯ So last season
+# ◯ Practically medieval in its appalling irrelevance
+
 
   
 
