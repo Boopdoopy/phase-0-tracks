@@ -3,7 +3,7 @@ def array_search(x, y)
   thing = false
   x.each do |found|
     if found == y
-      p count
+      p "There's #{count} #{y}('s)"
       thing = true
       count +=1
     else
@@ -16,9 +16,6 @@ def array_search(x, y)
   end
 end
 
-tester= [2,35,26,34,5,457,235,46,732,434,734,]
-#Take an integer, and have an array of that integer length
-
 def fibo(input_i)
   @output_array = [0, 1]
   until @output_array.length == input_i
@@ -26,6 +23,44 @@ def fibo(input_i)
   end
   return @output_array
 end
+
+
+
+def bubblesort (array1)
+finished = 1
+counter = 0
+length = array1.length
+until finished == length
+  if counter + finished == length
+    counter = 0
+    finished += 1  
+  elsif array1[counter] > array1[counter+1]
+    array1[counter], array1[counter+1] = array1[counter+1], array1[counter]
+    counter += 1
+  else
+    counter += 1
+  end
+end
+return array1
+end
+
+#/////////////////////////////////
+#Driver code
+air = [4,5,1,6,8,9,2,3]
+puts "#{air}"
+
+present = array_search(air,5)
+
+nacci6 = fibo(6)
+puts "#{nacci6}"
+
+air_sorted = bubblesort(air)
+puts "#{air_sorted}"
+
+#______________________________________________________________________________________
+#___________________________________Previous attempts__________________________________
+
+#                           Glad we took a break and rethought it
 
 # {|index|
 #         if array_i[counter-1] != nil && index <= array_i[counter-1] 
@@ -41,28 +76,30 @@ end
 
 
 #dunno how many ends
-def integerize (array_i)
-  @finished = 0
-  until array_i.length == @finished 
-    @finished = 0
-    @counter = 0
-    array_i.map!
-        if array_i[@counter-1] != nil && index <= array_i[@counter-1] 
-          array_i[@counter], array_i[@counter+1] = array_i[@counter+1], array_i[@counter]
+# def integerize (array_i)
+#   @finished = 0
+#   until array_i.length == @finished 
+#     @finished = 0
+#     @counter = 0
+#     array_i.map!
+#         if array_i[@counter-1] != nil && index <= array_i[@counter-1] 
+#           array_i[@counter], array_i[@counter+1] = array_i[@counter+1], array_i[@counter]
         
-        elsif  array_i[@counter+1] != nil && index >= array_i[counter+1]
-           array_i[@counter], array_i[@counter-1] = array_i[@counter-1], array_i[@counter]
-        else 
-          @finished += 1
-        end
-      counter += 1 
-    end
-  end
+#         elsif  array_i[@counter+1] != nil && index >= array_i[counter+1]
+#            array_i[@counter], array_i[@counter-1] = array_i[@counter-1], array_i[@counter]
+#         else 
+#           @finished += 1
+#         end
+#       counter += 1 
+#     end
+#   end
+
+
+  
 
 
 
-p integerize(tester)
-
+#ORIGINAL PSEUDO CODE TIL WE REREAD THE LAST BIT OF THE RELEASE
 
 
   #get letter
@@ -92,3 +129,11 @@ p integerize(tester)
 #iterate one step of the string
 #loop again again
  #unless???????
+
+
+#RELEASE 0 and 1 scratchwork
+#tester= [2,35,26,34,5,457,235,46,732,434,734,]
+#Take an integer, and have an array of that integer length
+
+
+
