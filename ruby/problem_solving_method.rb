@@ -1,58 +1,69 @@
-# def array_search(x, y)
-#   count =0
-#   thing = false
-#   x.each do |found|
-#     if found == y
-#       p count
-#       thing = true
-#       count +=1
-#     else
-#       count +=1
-#     end
-
-#     end
-#     if thing == false
-#       p nil
-#   end
-# end
-
-tester= [2,35,26,34,5,457,235,46,732,434,734,]
-# #Take an integer, and have an array of that integer length
-
-# def fibo(input_i)
-#   @output_array = [0, 1]
-#   until @output_array.length == input_i
-#     @output_array << @output_array[-2] + @output_array[-1]
-#   end
-#   return @output_array
-# end
-
-
-
-
-def integerize (array_i)
-  counter = 0
-  
-  array_i.each do |index|
-#index <= array_i[counter-1] ||
-      while index >= array_i[counter+1] || counter != array_i.length
-        if index <= array_i[counter-1]
-          array_i[counter], array_i[counter+1] = array_i[counter+1], array_i[counter]
-        
-        elsif index >= array_i[counter+1]
-           array_i[counter], array_i[counter-1] = array_i[counter-1], array_i[counter]
-       
-      end
+def array_search(x, y)
+  count =0
+  thing = false
+  x.each do |found|
+    if found == y
+      p count
+      thing = true
+      count +=1
+    else
+      count +=1
     end
-      counter += 1
 
+    end
+    if thing == false
+      p nil
   end
 end
+
+tester= [2,35,26,34,5,457,235,46,732,434,734,]
+#Take an integer, and have an array of that integer length
+
+def fibo(input_i)
+  @output_array = [0, 1]
+  until @output_array.length == input_i
+    @output_array << @output_array[-2] + @output_array[-1]
+  end
+  return @output_array
+end
+
+# {|index|
+#         if array_i[counter-1] != nil && index <= array_i[counter-1] 
+#           array_i[counter], array_i[counter+1] = array_i[counter+1], array_i[counter]
+        
+#         elsif  array_i[counter+1] != nil && index >= array_i[counter+1]
+#            array_i[counter], array_i[counter-1] = array_i[counter-1], array_i[counter]
+#         else 
+#           @finished += 1
+#         end
+#     #end
+#       counter += 1}
+
+
+#dunno how many ends
+def integerize (array_i)
+  @finished = 0
+  until array_i.length == @finished 
+    @finished = 0
+    @counter = 0
+    array_i.map!
+        if array_i[@counter-1] != nil && index <= array_i[@counter-1] 
+          array_i[@counter], array_i[@counter+1] = array_i[@counter+1], array_i[@counter]
+        
+        elsif  array_i[@counter+1] != nil && index >= array_i[counter+1]
+           array_i[@counter], array_i[@counter-1] = array_i[@counter-1], array_i[@counter]
+        else 
+          @finished += 1
+        end
+      counter += 1 
+    end
+  end
 
 
 
 p integerize(tester)
-   
+
+
 
   #get letter
   #find said in alphabet
@@ -80,7 +91,4 @@ p integerize(tester)
 #increase the counter^^
 #iterate one step of the string
 #loop again again
-# alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-# # fully_sorted == false
-# array_i[counter-1] = string.split(//)
  #unless???????
