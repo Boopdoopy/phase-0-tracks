@@ -32,10 +32,10 @@
   # n = alphabet.index(b)
   # $decoded_message += alphabet[n-1]
   # i = i+=1
-def loading (program = "Executing")
-  puts "#{program}"
+def loading (program = "Name encoder")
+  puts "#{program} initialized"
   sleep(0.25)
-  puts "Loading"
+  puts "loading"
   i = 0
   loading_bar = [
     ". ",". ",
@@ -86,12 +86,42 @@ reverse_name.map! do |letter|
         letter = " "  
       end #conditional    
   end #do
-
 reverse_name = reverse_name.join('').split(' ')
 code_name = reverse_name.map{|names| names.capitalize}.join(' ')
 end
 
-loading("Codename maker")
+function = "N"
+print "Hello agent\n"
+sleep(0.25)
+  until function == "E"
+    print "How can I help you today?\n(N)ame encoder  (A)lias database  (E)xit\n"
+    function = gets.chomp!.upcase
+    case function
+      when "N"
+        loading("Name encoder")
+        puts "Please enter a name"
+        n = gets.chomp
+        codenames(n)
+      when "A"
+        loading("Alias database")
+
+      when "E"
+        puts "Deleting data\n\n"
+        sleep(0.25)
+        puts "Initializing magnet bath\n\n"
+        sleep(0.25)
+        puts "⚡⚡⚡⚡◖|✖_✖|◗⚡⚡⚡⚡"
+        sleep(0.25)
+        puts "Whew! Goodbye!\n\n"
+        break
+      else
+        puts "Error"
+        next
+    end
+  end
+
+
+
 
 
 #Provide a user interface that lets a user enter a name and get a fake name back. 
