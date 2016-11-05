@@ -32,7 +32,23 @@
   # n = alphabet.index(b)
   # $decoded_message += alphabet[n-1]
   # i = i+=1
-
+def loading (program = "Executing")
+  puts "#{program}"
+  sleep(0.25)
+  puts "Loading"
+  i = 0
+  loading_bar = [
+    ". ",". ",
+    ". ",". ",
+    ". ",". "
+  ]
+  until i == 6
+    print loading_bar[i]
+    sleep(0.5)
+    i += 1
+  end
+  puts "Ready!"
+end
 
 def codenames (n = "James Bond")
 real_name = n.downcase
@@ -75,6 +91,16 @@ reverse_name = reverse_name.join('').split(' ')
 code_name = reverse_name.map{|names| names.capitalize}.join(' ')
 end
 
-test_name = codenames("Tannur Keyez")
-puts "#{test_name}"
+loading("Codename maker")
+
+
+#Provide a user interface that lets a user enter a name and get a fake name back. 
+#Let the user do this repeatedly until they decide to quit by typing 'quit'. 
+#(They might just hit Enter to continue.)
+
+# Use a data structure to store the fake names as they are entered. 
+# When the user exits the program, iterate through the data structure and print all of the data the user entered. 
+# A sentence like "Vussit Gimodoe is actually Felicia Torres" or 
+# "Felicia Torres is also known as Vussit Gimodoe" for each agent is fine.
+
 
