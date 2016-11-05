@@ -32,11 +32,10 @@
   # n = alphabet.index(b)
   # $decoded_message += alphabet[n-1]
   # i = i+=1
-def loading (program = "Name encoder")
+def loading (program = "Name encoder", i = 0)
   puts "#{program} initialized"
   sleep(0.25)
   puts "loading"
-  i = 0
   loading_bar = [
     ". ",". ",
     ". ",". ",
@@ -90,28 +89,42 @@ reverse_name = reverse_name.join('').split(' ')
 code_name = reverse_name.map{|names| names.capitalize}.join(' ')
 end
 
-function = "N"
+#Driver code/UI
+
 print "Hello agent\n"
 sleep(0.25)
+
+
+function = "N"
+database = {
+  :'Real name' => 'Alias'
+}
   until function == "E"
     print "How can I help you today?\n(N)ame encoder  (A)lias database  (E)xit\n"
     function = gets.chomp!.upcase
     case function
       when "N"
-        loading("Name encoder")
+        loading("Name encoder", 3)
         puts "Please enter a name"
-        n = gets.chomp
-        codenames(n)
+        real_name = gets.chomp
+        code_name = codenames(real_name)
+        database.store(real_name, code_name)
+        puts "encoded"
+        puts "Alias is #{code_name}"
       when "A"
         loading("Alias database")
-
+        puts "     ---------"
+        database.each{|key,value| puts "#{key}\'s codename is #{value}\n     ---------"}
       when "E"
         puts "Deleting data\n\n"
         sleep(0.25)
         puts "Initializing magnet bath\n\n"
         sleep(0.25)
         puts "⚡⚡⚡⚡◖|✖_✖|◗⚡⚡⚡⚡"
-        sleep(0.25)
+        sleep(1)
+        puts "    ◖|-_-|◗"
+        sleep(2)
+        puts "    ◖|^_^|◗"
         puts "Whew! Goodbye!\n\n"
         break
       else
