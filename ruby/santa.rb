@@ -51,15 +51,44 @@ class Santa
       print "\n"
   end
 
-#3 setter methods
-#celebrate_bday agin
-#get mad at reindeer
-#gender fluidity method
+        #3 setter methods
+        #celebrate_bday agin
+  def celebrate_bday
+    @age += 1
+    puts "  * HAPPY\n / \\BIRTHDAY\n(ﾉᵔヮᵔ)ﾉ*:・ﾟ・ﾟ✧ ✧"
+  end
 
-#2 getter methods
-#age returns @age
-#ethnicity returns @ethnicity
+        #get mad at reindeer
+  def get_mad_at_reindeer(ragedeer)
+    i = @reindeer_ranking.index(ragedeer)
+    sleeping_on_couch  = @reindeer_ranking.slice!(i)
+    @reindeer_ranking << sleeping_on_couch
 
+    # p on_timeout
+    # @reindeer_ranking.rotate!(on_timeout)
+    # p @reindeer_ranking
+  end
+        #gender fluidity method
+  def gender_fluidity(gender)
+    @gender = gender
+  end
+        #2 getter methods
+        #age returns @age
+  def age
+    @age
+  end
+        #ethnicity returns @ethnicity
+  def ethnicity
+    @ethnicity
+  end
+
+  def gender
+    @gender
+  end
+
+  def top_deer
+    @reindeer_ranking[0]
+  end
 end
 
 santas = []
@@ -112,23 +141,52 @@ subculture_list = [
   "wizard"
 ]
 
-gender_list.length.times do |i|
-  santas << Santa.new(gender_list[i], ethnicity_list[i])
-end
 
-gender_list.length.times do |i|
-    ethnicity_complex = ethnicity_list.shuffle![i]
-    # p ethnicity_complex
-    ethnicity_complex << " "
-    # p ethnicity_complex
-    ethnicity_complex << subculture_list[i]
-    # p ethnicity_complex
-    santas << Santa.new(gender_list[i], ethnicity_complex)
-end
+the_OG = Santa.new("Male","Rosy northern whitebeard")
+
+# p the_OG.age
+
+# the_OG.celebrate_bday
+
+# p the_OG.age
+
+# p the_OG.ethnicity
+
+p the_OG.gender
+
+the_OG.gender_fluidity(gender_list[8])
+
+p the_OG.gender
+
+p the_OG.top_deer
+
+the_OG.get_mad_at_reindeer("Rudolph")
+
+p the_OG.top_deer
 
 
-santas.each do |i|
-  puts "#{i}"
-end
+
+
+
+# gender_list.length.times do |i|
+#   santas << Santa.new(gender_list[i], ethnicity_list[i])
+# end
+
+# gender_list.length.times do |i|
+#     ethnicity_complex = ethnicity_list.shuffle![i]
+#     # p ethnicity_complex
+#     ethnicity_complex << " "
+#     # p ethnicity_complex
+#     ethnicity_complex << subculture_list[i]
+#     # p ethnicity_complex
+#     santas << Santa.new(gender_list[i], ethnicity_complex)
+# end
+
+
+# santas.each do |i|
+#   puts "#{i}"
+# end
+
+
 
 
