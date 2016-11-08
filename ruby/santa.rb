@@ -16,11 +16,11 @@ class Santa
   end
 
   def eat_milk_and_cookies(cookie = "chocolate-chip cookie")
-    i = 0
-      while i != 3
+    count = 0
+      while count != 3
         print "nom..."
         sleep(0.5)
-        i += 1
+        count += 1
       end
     puts "That was a good #{cookie}!"
   end
@@ -42,14 +42,23 @@ class Santa
     @reindeer_ranking = reindeer_ranking
     @age = age
     print "Initializing Santa instance"
-    i = 0
-      while i != 2
+    count = 0
+      while count != 2
         print "."
         sleep(0.25)
-        i += 1
+        count += 1
       end
       print "\n"
   end
+
+#3 setter methods
+#celebrate_bday agin
+#get mad at reindeer
+#gender fluidity method
+
+#2 getter methods
+#age returns @age
+#ethnicity returns @ethnicity
 
 end
 
@@ -87,10 +96,39 @@ ethnicity_list = [
   "Hispanic"
 ]
 
+subculture_list = [
+  "punkrocker",
+  "unicorn",
+  "pirate",
+  "ninja",
+  "cowboy",
+  "samurai",
+  "space alien",
+  "robot",
+  "cyborg",
+  "hawkperson",
+  "banana themed",
+  "secret lizard person",
+  "wizard"
+]
+
 gender_list.length.times do |i|
   santas << Santa.new(gender_list[i], ethnicity_list[i])
 end
 
+gender_list.length.times do |i|
+    ethnicity_complex = ethnicity_list.shuffle![i]
+    # p ethnicity_complex
+    ethnicity_complex << " "
+    # p ethnicity_complex
+    ethnicity_complex << subculture_list[i]
+    # p ethnicity_complex
+    santas << Santa.new(gender_list[i], ethnicity_complex)
+end
+
+
 santas.each do |i|
-  
+  puts "#{i}"
+end
+
 
