@@ -5,11 +5,14 @@
 # => eat_milk_and_cookies
 # => initialize
 #ATTRIBUTES
-#
+
 
 
 
 class Santa
+  attr_reader :age, :ethnicity, :reindeer_ranking
+  attr_accessor :gender
+
 
   def speak
     puts "Ho, ho, ho! Haaaappy holidays!"
@@ -37,10 +40,13 @@ class Santa
       ],
     age = 0
     )
+
+
     @gender = gender
     @ethnicity = ethnicity
     @reindeer_ranking = reindeer_ranking
     @age = age
+
     print "Initializing Santa instance"
     count = 0
       while count != 2
@@ -51,43 +57,19 @@ class Santa
       print "\n"
   end
 
-        #3 setter methods
-        #celebrate_bday agin
+        
+#celebrate_bday
   def celebrate_bday
     @age += 1
     puts "  * HAPPY\n / \\BIRTHDAY\n(ﾉᵔヮᵔ)ﾉ*:・ﾟ・ﾟ✧ ✧"
   end
 
-        #get mad at reindeer
+#get mad at reindeer
   def get_mad_at_reindeer(ragedeer)
+    puts "I've had enough of you #{ragedeer}!!!!!"
     i = @reindeer_ranking.index(ragedeer)
     sleeping_on_couch  = @reindeer_ranking.slice!(i)
     @reindeer_ranking << sleeping_on_couch
-
-    # p on_timeout
-    # @reindeer_ranking.rotate!(on_timeout)
-    # p @reindeer_ranking
-  end
-        #gender fluidity method
-  def gender_fluidity(gender)
-    @gender = gender
-  end
-        #2 getter methods
-        #age returns @age
-  def age
-    @age
-  end
-        #ethnicity returns @ethnicity
-  def ethnicity
-    @ethnicity
-  end
-
-  def gender
-    @gender
-  end
-
-  def top_deer
-    @reindeer_ranking[0]
   end
 end
 
@@ -142,27 +124,42 @@ subculture_list = [
 ]
 
 
-the_OG = Santa.new("Male","Rosy northern whitebeard")
 
-# p the_OG.age
 
-# the_OG.celebrate_bday
 
-# p the_OG.age
 
-# p the_OG.ethnicity
 
-p the_OG.gender
 
-the_OG.gender_fluidity(gender_list[8])
 
-p the_OG.gender
 
-p the_OG.top_deer
 
-the_OG.get_mad_at_reindeer("Rudolph")
 
-p the_OG.top_deer
+
+
+
+
+
+# the_OG = Santa.new("Male","Rosy northern whitebeard")
+
+# # p the_OG.age
+
+# # the_OG.celebrate_bday
+
+# # p the_OG.age
+
+# # p the_OG.ethnicity
+
+# p the_OG.gender
+
+# the_OG.gender = gender_list[8]
+
+# p the_OG.gender
+
+# p the_OG.reindeer_ranking
+
+# the_OG.get_mad_at_reindeer("Rudolph")
+
+# p the_OG.reindeer_ranking
 
 
 
