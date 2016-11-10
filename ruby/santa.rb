@@ -5,11 +5,14 @@
 # => eat_milk_and_cookies
 # => initialize
 #ATTRIBUTES
-#
+
 
 
 
 class Santa
+  attr_reader :age, :ethnicity, :reindeer_ranking
+  attr_accessor :gender
+
 
   def speak
     puts "Ho, ho, ho! Haaaappy holidays!"
@@ -28,141 +31,139 @@ class Santa
   def initialize(
     gender, 
     ethnicity, 
+    age = 0,
     reindeer_ranking = [
       "Rudolph", "Dasher", 
       "Dancer", "Prancer", 
       "Vixen", "Comet", 
       "Cupid", "Donner", 
       "Blitzen"
-      ],
-    age = 0
+      ]
     )
+
+
     @gender = gender
     @ethnicity = ethnicity
     @reindeer_ranking = reindeer_ranking
     @age = age
+
     print "Initializing Santa instance"
     count = 0
       while count != 2
         print "."
-        sleep(0.25)
+        sleep(0.15)
         count += 1
       end
       print "\n"
   end
 
-        #3 setter methods
-        #celebrate_bday agin
+        
+#celebrate_bday
   def celebrate_bday
     @age += 1
     puts "  * HAPPY\n / \\BIRTHDAY\n(ﾉᵔヮᵔ)ﾉ*:・ﾟ・ﾟ✧ ✧"
   end
 
-        #get mad at reindeer
+#get mad at reindeer
   def get_mad_at_reindeer(ragedeer)
+    puts "I've had enough of you #{ragedeer}!!!!!"
     i = @reindeer_ranking.index(ragedeer)
     sleeping_on_couch  = @reindeer_ranking.slice!(i)
     @reindeer_ranking << sleeping_on_couch
-
-    # p on_timeout
-    # @reindeer_ranking.rotate!(on_timeout)
-    # p @reindeer_ranking
-  end
-        #gender fluidity method
-  def gender_fluidity(gender)
-    @gender = gender
-  end
-        #2 getter methods
-        #age returns @age
-  def age
-    @age
-  end
-        #ethnicity returns @ethnicity
-  def ethnicity
-    @ethnicity
-  end
-
-  def gender
-    @gender
-  end
-
-  def top_deer
-    @reindeer_ranking[0]
   end
 end
 
-santas = []
-
-gender_list = [
-  "male",
-  "female",
-  "gender queer",
-  "non-binary",
-  "gender fluid",
-  "kathoey",
-  "Hijras",
-  "Khanith",
-  "Leather daddy",
-  "agender",
-  "Butch",
-  "androgyne",
-  "undisclosed"
-]
-
-ethnicity_list = [
-  "Native American",
-  "Caucasian",
-  "African American",
-  "West African",
-  "East African",
-  "Arab",
-  "Persian",
-  "Indian",
-  "Chinese",
-  "Vietnamese",
-  "Pacific Islander",
-  "Mestizo",
-  "Hispanic"
-]
-
-subculture_list = [
-  "punkrocker",
-  "unicorn",
-  "pirate",
-  "ninja",
-  "cowboy",
-  "samurai",
-  "space alien",
-  "robot",
-  "cyborg",
-  "hawkperson",
-  "banana themed",
-  "secret lizard person",
-  "wizard"
-]
 
 
-the_OG = Santa.new("Male","Rosy northern whitebeard")
+#-----------Methods
+def santa_factory(shipment)
+  #--------Reference local arrays
+    gender_list = [
+      "Male ","Female ","Gender queer ",
+      "Non-binary ","Gender fluid ", "Kathoey ",
+      "Hijras ","Khanith ","Leather daddy ",
+      "Agender ","Butch ","Androgyne ",
+      "Undisclosed "
+    ]
+    ethnicity_list = [
+      "Native American ","Caucasian ",
+      "African American ","West African ",
+      "East African ","Arab ","Persian ",
+      "Indian ","Chinese ","Vietnamese ",
+      "Pacific Islander ","Mestizo ",
+      "Hispanic "
+    ]
+    subculture_list = [
+      "punkrocker","unicorn","pirate",
+      "ninja","cowboy","samurai",
+      "space alien","robot","cyborg",
+      "hawkperson","giant banana",
+      "secret lizard person","wizard"
+    ]
+    rng_age = (0..140).to_a
+    santas = []
+  i = 0
+    while i < shipment do
+      ethnicity_complex = [
+        ethnicity_list.shuffle.pop, 
+        subculture_list.shuffle.pop
+      ]
+      ethn_complex = ethnicity_complex.join("")
+      santas << Santa.new(gender_list.shuffle.pop, ethn_complex, rng_age.shuffle.pop)
+      i += 1
+    end
+  santas
+end
 
-# p the_OG.age
 
-# the_OG.celebrate_bday
 
-# p the_OG.age
+def santa_con(santas)
+santas.each do |i|
+  if santas.index(i) < 1
+    puts "    --------🎄--------    \n Calling Santa-con role call!\n    -----------------    "
+  elsif santas.index(i) == (santas.length - 1)
+    puts "Love to see such a diverse group of Santas!"
+  else
+   print "#{i.age} year old, #{i.gender}#{i.ethnicity}-santa reporting in!\n"
+ end
 
-# p the_OG.ethnicity
+ end
+end
 
-p the_OG.gender
 
-the_OG.gender_fluidity(gender_list[8])
+santa_con(santa_factory(10))
 
-p the_OG.gender
 
-p the_OG.top_deer
 
-the_OG.get_mad_at_reindeer("Rudolph")
 
-p the_OG.top_deer
+
+
+
+
+
+
+
+# the_OG = Santa.new("Male","Rosy northern whitebeard")
+
+# # p the_OG.age
+
+# # the_OG.celebrate_bday
+
+# # p the_OG.age
+
+# # p the_OG.ethnicity
+
+# p the_OG.gender
+
+# the_OG.gender = gender_list[8]
+
+# p the_OG.gender
+
+# p the_OG.reindeer_ranking
+
+# the_OG.get_mad_at_reindeer("Rudolph")
+
+# p the_OG.reindeer_ranking
 
 
 
@@ -182,10 +183,6 @@ p the_OG.top_deer
 #     santas << Santa.new(gender_list[i], ethnicity_complex)
 # end
 
-
-# santas.each do |i|
-#   puts "#{i}"
-# end
 
 
 
