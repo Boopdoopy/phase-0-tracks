@@ -31,14 +31,14 @@ class Santa
   def initialize(
     gender, 
     ethnicity, 
+    age = 0,
     reindeer_ranking = [
       "Rudolph", "Dasher", 
       "Dancer", "Prancer", 
       "Vixen", "Comet", 
       "Cupid", "Donner", 
       "Blitzen"
-      ],
-    age = 0
+      ]
     )
 
 
@@ -51,7 +51,7 @@ class Santa
     count = 0
       while count != 2
         print "."
-        sleep(0.25)
+        sleep(0.15)
         count += 1
       end
       print "\n"
@@ -73,61 +73,65 @@ class Santa
   end
 end
 
-santas = []
 
-gender_list = [
-  "male",
-  "female",
-  "gender queer",
-  "non-binary",
-  "gender fluid",
-  "kathoey",
-  "Hijras",
-  "Khanith",
-  "Leather daddy",
-  "agender",
-  "Butch",
-  "androgyne",
-  "undisclosed"
-]
 
-ethnicity_list = [
-  "Native American",
-  "Caucasian",
-  "African American",
-  "West African",
-  "East African",
-  "Arab",
-  "Persian",
-  "Indian",
-  "Chinese",
-  "Vietnamese",
-  "Pacific Islander",
-  "Mestizo",
-  "Hispanic"
-]
-
-subculture_list = [
-  "punkrocker",
-  "unicorn",
-  "pirate",
-  "ninja",
-  "cowboy",
-  "samurai",
-  "space alien",
-  "robot",
-  "cyborg",
-  "hawkperson",
-  "banana themed",
-  "secret lizard person",
-  "wizard"
-]
+#-----------Methods
+def santa_factory(shipment)
+  #--------Reference local arrays
+    gender_list = [
+      "Male ","Female ","Gender queer ",
+      "Non-binary ","Gender fluid ", "Kathoey ",
+      "Hijras ","Khanith ","Leather daddy ",
+      "Agender ","Butch ","Androgyne ",
+      "Undisclosed "
+    ]
+    ethnicity_list = [
+      "Native American ","Caucasian ",
+      "African American ","West African ",
+      "East African ","Arab ","Persian ",
+      "Indian ","Chinese ","Vietnamese ",
+      "Pacific Islander ","Mestizo ",
+      "Hispanic "
+    ]
+    subculture_list = [
+      "punkrocker","unicorn","pirate",
+      "ninja","cowboy","samurai",
+      "space alien","robot","cyborg",
+      "hawkperson","giant banana",
+      "secret lizard person","wizard"
+    ]
+    rng_age = (0..140).to_a
+    santas = []
+  i = 0
+    while i < shipment do
+      ethnicity_complex = [
+        ethnicity_list.shuffle.pop, 
+        subculture_list.shuffle.pop
+      ]
+      ethn_complex = ethnicity_complex.join("")
+      santas << Santa.new(gender_list.shuffle.pop, ethn_complex, rng_age.shuffle.pop)
+      i += 1
+    end
+  santas
+end
 
 
 
+def santa_con(santas)
+santas.each do |i|
+  if santas.index(i) < 1
+    puts "    --------🎄--------    \n Calling Santa-con role call!\n    -----------------    "
+  elsif santas.index(i) == (santas.length - 1)
+    puts "Love to see such a diverse group of Santas!"
+  else
+   print "#{i.age} year old, #{i.gender}#{i.ethnicity}-santa reporting in!\n"
+ end
+
+ end
+end
 
 
-
+santa_con(santa_factory(10))
 
 
 
@@ -179,10 +183,6 @@ subculture_list = [
 #     santas << Santa.new(gender_list[i], ethnicity_complex)
 # end
 
-
-# santas.each do |i|
-#   puts "#{i}"
-# end
 
 
 
