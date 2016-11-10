@@ -37,3 +37,5 @@ its_a.each do |x|
   print "\n#{x.class} " 
   x.take_off(800)
 end
+
+
