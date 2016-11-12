@@ -1,7 +1,38 @@
 class Guessing
-  # attr_reader :game, :remaining_guess
+  attr_reader :game, :remaining_guess
   
-  # def initialize(word)
+  def initialize(word)
+    @previous = Array.new
+    @remaining_guess = word.length
+    @remaining_guess /= 3
+    @remaining_guess += 1
+    @game = Hash.new
+    word.each_char do |char|
+      @game.store(char,"_")
+    end
+
+  def reveal
+    status = " "
+    @game.each do |hidden, visible|
+      status << visible
+      status << " "
+    end
+    status << "\nNumber of guesses remaining = #{@remaining_guess}"
+
+  end
+
+  def try(letter)
+    if letter.length != 1
+      false
+    elsif @game.has_key?(letter) == true
+      @game[letter] = letter
+      @game
+    else
+      @previous << letter
+    end
+  end
+
+  end
   #   length = word.length
   #   length /= 3 
   #   length += 1

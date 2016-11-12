@@ -1,5 +1,31 @@
 require "./Guessing"
 describe Guessing do 
+  it "Takes a word and stores 1/3 + 1 its length" do
+    hangman = Guessing.new("cat")
+    expect(hangman.remaining_guess).to eq 2
+  end
+  it "Takes a word and stores in hash each character as key with value _" do
+    hangman = Guessing.new("cat")
+    expect(hangman.game).to eq("c"=>"_","a"=>"_","t"=>"_")
+  end
+  it "Prints the status of the game" do
+    hangman = Guessing.new("cat")
+    expect(hangman.reveal).to eq(" _ _ _ \nNumber of guesses remaining = 2")
+  end
+  it "Takes a letter and checks if it's one character" do
+     hangman = Guessing.new("cat")
+     expect(hangman.try("ca")).to eq false
+   end
+  it "Stores a match with the same key" do
+  hangman = Guessing.new("cat")
+  expect(hangman.try("c")).to eq("c"=>"c","a"=>"_","t"=>"_")
+  end
+
+  it "Stores a non-match in prev_guess" do
+  hangman = Guessing.new("cat")
+  expect(hangman.try("z")).to eq(["z"])
+  end
+end
   # let(:hangman) {Guessing.new("lighting")}
 
   # it "takes in a string,stores max guesses, stores each character in a hash as keys with value _ " do
@@ -30,4 +56,3 @@ describe Guessing do
   #   #   :n=>"_ ", :g=>"_ "
   #   #  } 
   #   end
-end
