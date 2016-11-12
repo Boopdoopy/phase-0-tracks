@@ -21,15 +21,21 @@ class Guessing
 
   end
 
+#thought: have try take a boolean, while false the game continues
   def try(letter)
     if letter.length != 1
       false
-    elsif @game.has_key?(letter) == true
+    elsif @game.has_key?(letter)
       @game[letter] = letter
       @game
+    elsif @previous.include?(letter)
+      false
     else
       @previous << letter
     end
+  end
+  def result
+    @game.has_value?("_")
   end
 
   end
