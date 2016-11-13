@@ -8,8 +8,15 @@ class Guessing
     @remaining_guess /= 3
     @remaining_guess += 1
     @game = Hash.new
+    fudge_factor = 0
     word.each_char do |char|
-      @game.store(char,"_")
+      if @game.has_key?(char)
+        key_fudge = "#{char}#{fudge_factor}"
+        fudge_factor +=1
+        @game.store(key_fudge,"_")
+      else
+        @game.store(char,"_")
+      end
     end
   end
 
@@ -27,8 +34,13 @@ class Guessing
   def try(letter)
       if letter.length != 1
         @is_over = false
+
       elsif @game.has_key?(letter)
-        @game[letter] = letter
+        @game.each do |hidden,visible|
+          if hidden.include?(letter)
+            @game[hidden] = letter
+          end
+        end
         @game
       elsif @previous.include?(letter)
         @is_over = false
@@ -49,38 +61,22 @@ class Guessing
   end
 end
 
-# hangman = Guessing.new("lightning")
+#Driver code///////////////////////
 
-# # while hangman.is_over == false
-# #   print hangman.reveal
-# #   puts "guess a letter"
-# #   letter = gets.chomp
-# #   hangman.try(letter)
-# #   game_msg = hangman.result
-# #     case game_msg
-# #       when true
-# #         puts "Congrats!"
-# #       when nil
-# #         puts "You suck!"
-# #       else
-# #         puts "The game continues!"
-# #       end
-# # end
+hangman = Guessing.new("lightning")
 
-
-
-
-  #   length = word.length
-  #   length /= 3 
-  #   length += 1
-  #   @remaining_guess = length
-  #   @game = Hash.new
-  #   @prev_guess = Array.new
-    
-  #   char_array = word.split('')
-  #     char_array.each do |char|
-  #       @game << {char, "_ "}
-  #     end
-  #   end
-
-  # end
+while hangman.is_over == false
+  print hangman.reveal
+  puts "guess a letter"
+  letter = gets.chomp
+  hangman.try(letter)
+  game_msg = hangman.result
+    case game_msg
+      when true
+        puts "Congrats!"
+      when nil
+        puts "You suck!"
+      else
+        puts "The game continues!"
+      end
+end
