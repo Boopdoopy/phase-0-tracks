@@ -11,7 +11,7 @@ describe Guessing do
   end
   it "Prints the status of the game" do
     # hangman = Guessing.new("cat")
-    expect(hangman.reveal).to eq(" _ _ _ \nNumber of guesses remaining = 2")
+    expect(hangman.reveal).to eq(" _ _ _ \nNumber of guesses remaining = 2\n")
   end
   it "Takes a letter and checks if it's one character" do
      # hangman = Guessing.new("cat")
@@ -57,6 +57,7 @@ describe Guessing do
     hangman.try("x")
     expect(hangman.result).to eq nil
   end
+
 end
   # let(:hangman) {Guessing.new("lighting")}
 
