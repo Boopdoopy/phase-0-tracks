@@ -31,7 +31,32 @@ describe Guessing do
     hangman.try("z")
     expect(hangman.try("z")).to eq false
   end
-  
+
+  it "Subtracts a wrong guess from maximum guesses" do
+    hangman.try("z")
+    expect(hangman.remaining_guess).to eq 1
+  end
+
+  it "Checks for blanks in hash" do
+    expect(hangman.result).to eq false
+  end
+
+  it "Returns true if hash has no blanks" do
+    hangman.try("c")
+    hangman.try("a")
+    hangman.try("t")
+    expect(hangman.result).to eq true
+  end
+
+  it "Compares previous guess number to remaining" do
+    hangman.try("c")
+    hangman.try("c")
+    hangman.try("z")
+    hangman.try("x")
+    hangman.try("a")
+    hangman.try("x")
+    expect(hangman.result).to eq nil
+  end
 end
   # let(:hangman) {Guessing.new("lighting")}
 

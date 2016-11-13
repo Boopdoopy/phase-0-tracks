@@ -10,6 +10,7 @@ class Guessing
     word.each_char do |char|
       @game.store(char,"_")
     end
+  end
 
   def reveal
     status = " "
@@ -31,14 +32,22 @@ class Guessing
     elsif @previous.include?(letter)
       false
     else
+      @remaining_guess -= 1
       @previous << letter
     end
   end
+
   def result
-    @game.has_value?("_")
+    if !@game.has_value?("_")
+      true
+    elsif @remaining_guess == 0
+      nil
+    else
+      false
+    end
   end
 
-  end
+end
   #   length = word.length
   #   length /= 3 
   #   length += 1
@@ -53,4 +62,3 @@ class Guessing
   #   end
 
   # end
-end
