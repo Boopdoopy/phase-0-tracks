@@ -14,4 +14,9 @@ function strReverse (str="") {
 return strResult
 }
 
-strReverse("Woot!");
+//Driver code
+var wordOfchoice = prompt("Enter a word to reverse!","Word!")
+if (!wordOfchoice === null ) {
+var backwards = strReverse(wordOfchoice);
+console.log("Your backwards word is " + backwards + "!");
+};
