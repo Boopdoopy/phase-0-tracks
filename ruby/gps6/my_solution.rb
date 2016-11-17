@@ -1,10 +1,6 @@
 # Virus Predictor
-# I worked on this challenge [by myself, with: ].
-# We spent [#] hours on this challenge.
-# EXPLANATION OF require_relative
-#require_relative vs require
-#require will just look in the load path. A global variable that ruby has access to.
-#require_relative will be searched in the current folder that you call out. more predictable.
+# I worked on this challenge [release 8 by myself, the rest with:Kim Tran].
+# We spent [1.5] hours on this challenge.
 require_relative 'state_data'
 class VirusPredictor
  #initialize instance variables, only list out parameters in initialize.
@@ -84,3 +80,25 @@ end
 #=======================================================================
 # Reflection Section
 #What kind of variable is STATE_DATA: global variable, and what's its scope?
+
+#Independent reflection section
+1.What are the differences between the two different hash syntaxes shown in the state_data file?
+One uses the => rocket that we were shown the other uses symbol functionality to define with <key>:<value>
+2.What does require_relative do? How is it different from require?
+#require will just look in the load path. A global variable that ruby has access to.
+#require_relative will be searched in the current folder that you call out. more predictable.
+3.What are some ways to iterate through a hash?
+#each |key,value|; while i, hash[i], i++; 
+4.When refactoring virus_effects, what stood out to you about the variables, if anything?
+#The class variables did not need to be added as parameters given their scope
+5.What concept did you most solidify in this challenge?
+#Require/require-relative really struggled with understanding that til now, Kim also did
+#a great job of teaching me about private
+
+
+
+
+
+
+
+
