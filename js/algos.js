@@ -1,15 +1,3 @@
-var ALPHABETconstant = [
-"a","b","c","d","e",
-"f","g","h","i","j",
-"k","l","m","n","o",
-"p","q","r","s","t",
-"u","v","w","x","y",
-"z"
-];
-
-
-
-
 //Psuedocode longest phrase
 // input: array of strings
 //  1.set length benchmark (0 to start)
@@ -20,18 +8,6 @@ var ALPHABETconstant = [
 //  6.on completion of iteration return item at stored index number
 // output: returns string with longest length
 // no research needed
-
-function longestPhrase (wordArray) {
-  benchMark = 0;
-  bookMark = 0;
-  for (i = 0;i<wordArray.length;i++) {
-    if (wordArray[i].length > benchMark) {
-      bookMark = i;
-      benchMark = wordArray[i].length;
-    }
-  }
-return wordArray[bookMark];
-}
 
 //Psuedocode key and value match
 // input: 2 Hash's
@@ -72,21 +48,7 @@ return wordArray[bookMark];
 //  6.On end of iter. 2 moves iter.1 forward one.
 //  7.else returns false
 // output: returns true if match is found + false otherwise
-function matchMaker(keyed_obj1, keyed_obj2) {
-  result = false;
-  for(key in keyed_obj1) {
-    key1 = key;
-    value1 = keyed_obj1[key];
-    for(key in keyed_obj2) {
-      key2 = key;
-      value2 = keyed_obj2[key];
-      if(key1 == key2){
-        result = value1 == value2;
-      };
-    };
-};
-return result;
-}
+
 //Pseudocode
 //Random string maker
 //input:integer
@@ -128,6 +90,44 @@ return result;
 //    returns or continues
 //output:array with integer length containing
 //      varying length (1-10) strings 
+//==================================================
+var ALPHABETconstant = [
+"a","b","c","d","e",
+"f","g","h","i","j",
+"k","l","m","n","o",
+"p","q","r","s","t",
+"u","v","w","x","y",
+"z"
+];
+
+function longestPhrase (wordArray) {
+  benchMark = 0;
+  bookMark = 0;
+  for (i = 0;i<wordArray.length;i++) {
+    if (wordArray[i].length > benchMark) {
+      bookMark = i;
+      benchMark = wordArray[i].length;
+    }
+  }
+return wordArray[bookMark];
+}
+
+function matchMaker(keyed_obj1, keyed_obj2) {
+  result = false;
+  for(key in keyed_obj1) {
+    key1 = key;
+    value1 = keyed_obj1[key];
+    for(key in keyed_obj2) {
+      key2 = key;
+      value2 = keyed_obj2[key];
+      if(key1 == key2){
+        result = value1 == value2;
+      };
+    };
+};
+return result;
+}
+
 function gibbARRAY(length){
   var rngArray = [];
   for(i = 0;i<length;i++){
@@ -141,12 +141,6 @@ function gibbARRAY(length){
   };
 return rngArray
 }
-
-// Add driver code that does the following 10 times: 
-// generates an array, prints the array, 
-// feeds the array to your "longest word" function, 
-// and prints the result.
-
 
 //Driver Code====================================================
 var testArray = ["longest phrase","long phrase","longer phrase","phrase"];
@@ -174,15 +168,15 @@ console.log(isMatch);
 var rngThree = gibbARRAY(3);
 console.log(rngThree);
 
-for(i=0;i<10;i++){
-  size = Math.floor(6*Math.random());
+for(count=0;count<10;count++){
+  size = 1 + Math.floor(6*Math.random());
   random = gibbARRAY(size);
-  console.log(random);
+  console.log("\n" + random);
   whichLongest = longestPhrase(random);
-  console.log(whichLongest);
+  console.log("Longest word is " + whichLongest);
 };
 
-
+//=========================================================
 
 //Debugging notes for gibbArray========================
 //right so ran it a couple times to see
@@ -212,4 +206,14 @@ for(i=0;i<10;i++){
 //string is added at index = to stringLength - 1
 //if by some chance i is less than 3
 //repeat adding even more to later aspects of array
+
+//Debugging notes 2: the debuggening
+//driver code infinite loop scope issue with
+//i being changed by functions running within
+//easy fix just used count
+//found edge case though, 1 in 10 times it spits out zero
+//ah, its in the use of random with size
+//threw in a + 1
+//all good, need to remember scope especially with for(i=)
+
 
