@@ -1,4 +1,4 @@
-ALPHABETconstant = [
+var ALPHABETconstant = [
 "a","b","c","d","e",
 "f","g","h","i","j",
 "k","l","m","n","o",
@@ -91,11 +91,6 @@ return result;
 
 
 
-Add driver code that does the following 10 times: 
-generates an array, prints the array, 
-feeds the array to your "longest word" function, 
-and prints the result.
-
 //Pseudocode
 //Random string maker
 //input:integer
@@ -140,13 +135,25 @@ and prints the result.
 //output:array with integer length containing
 //      varying length (1-10) strings 
 
-function gibberishARRAY(length){
-  rngArray = [];
+function gibbARRAY(length){
+  var rngArray = [];
   for(i = 0;i<length;i++){
-
+    var randoStr = "";
+    stringLength = Math.floor(1 + (10*Math.random()));
+    for (i=0;i<stringLength;i++){
+      var rngChar = Math.floor(1 + (26*Math.random()));
+      randoStr += ALPHABETconstant[rngChar];
+    };
+    rngArray[i] = randoStr
   };
 return rngArray
 }
+
+// Add driver code that does the following 10 times: 
+// generates an array, prints the array, 
+// feeds the array to your "longest word" function, 
+// and prints the result.
+
 
 //Driver Code====================================================
 var testArray = ["longest phrase","long phrase","longer phrase","phrase"];
@@ -170,5 +177,8 @@ var profile2 = {
 
 var isMatch = matchMaker(profile1,profile2);
 console.log(isMatch);
+
+var rngThree = gibbARRAY(3);
+console.log(rngThree);
 
 
