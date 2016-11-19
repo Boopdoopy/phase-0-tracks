@@ -87,10 +87,6 @@ function matchMaker(keyed_obj1, keyed_obj2) {
 };
 return result;
 }
-
-
-
-
 //Pseudocode
 //Random string maker
 //input:integer
@@ -116,8 +112,6 @@ return result;
 //        Q.E.D 
 //        1 + 10*math.random().floor 
 //        will return between 1-10
-
-
 //        ii. 1 between 1-26
 //         working with the previous solution
 //         1 + 26*math.random().floor
@@ -134,14 +128,13 @@ return result;
 //    returns or continues
 //output:array with integer length containing
 //      varying length (1-10) strings 
-
 function gibbARRAY(length){
   var rngArray = [];
   for(i = 0;i<length;i++){
     var randoStr = "";
-    stringLength = Math.floor(1 + (10*Math.random()));
-    for (i=0;i<stringLength;i++){
-      var rngChar = Math.floor(1 + (26*Math.random()));
+    stringLength = Math.floor((1 + (10*Math.random())));
+    for (j = 0;j<stringLength;j++){
+      var rngChar = Math.floor(26*Math.random());
       randoStr += ALPHABETconstant[rngChar];
     };
     rngArray[i] = randoStr
@@ -181,4 +174,42 @@ console.log(isMatch);
 var rngThree = gibbARRAY(3);
 console.log(rngThree);
 
+for(i=0;i<10;i++){
+  size = Math.floor(6*Math.random());
+  random = gibbARRAY(size);
+  console.log(random);
+  whichLongest = longestPhrase(random);
+  console.log(whichLongest);
+};
+
+
+
+//Debugging notes for gibbArray========================
+//right so ran it a couple times to see
+//it's spitting out an array with length between 1 and 10
+//all strings are length 0 except the last one
+//with strings of length up until -> psundefinedsjfgiub (19)
+//ah, in for I'm using i twice whoops
+//using j instead fixed that but string length is still far higher than 10
+//well rngChar should be between 0-25 (fixing that) 
+//but that wouldn't do it
+//well that kind of did it? I no longer get longer than 11 but still
+//noticed potential order of operations issue 
+//in stringLength added extra parenths
+//huh, that actually fixed it. I'm guessing it was ah!
+//it was running through the loop an extra time
+//tl;dr notes: 
+//i set to 0
+//compared to length
+//i again set to 0
+//compared to stringLength
+//letter generated
+//added to string
+//i++
+//checked against stringLength
+//repeated until string=stringLength and i 
+//is wayyy bigger than length
+//string is added at index = to stringLength - 1
+//if by some chance i is less than 3
+//repeat adding even more to later aspects of array
 
