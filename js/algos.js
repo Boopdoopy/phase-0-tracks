@@ -1,3 +1,15 @@
+ALPHABETconstant = [
+"a","b","c","d","e",
+"f","g","h","i","j",
+"k","l","m","n","o",
+"p","q","r","s","t",
+"u","v","w","x","y",
+"z"
+];
+
+
+
+
 //Psuedocode longest phrase
 // input: array of strings
 //  1.set length benchmark (0 to start)
@@ -74,6 +86,66 @@ function matchMaker(keyed_obj1, keyed_obj2) {
     };
 };
 return result;
+}
+
+
+
+
+Add driver code that does the following 10 times: 
+generates an array, prints the array, 
+feeds the array to your "longest word" function, 
+and prints the result.
+
+//Pseudocode
+//Random string maker
+//input:integer
+//  1. sets integer as iteration index
+//  2. creates string
+//  seems like this is where the iteration would begin
+//  looking at 3 loops, 
+//   - 1 for quantity of strings (argument) name:length,
+//   - 1 for string length(rng) name:wordRNG,
+//   - 1 for random letter(rng) name:charRNG,
+//     things to research
+//     [generate random number]
+//      aight, so Math.random() returns a float between
+//      0 and 1 and #floor rounds down (math time!)
+//     a.local (could use global, not going to change haha)
+//        yeah lets do global for speed
+         // var array of alphabet
+//     b.generate 2 random numbers 
+//        i.1 between 1-10 
+//        10*math.random.floor would return between
+//        0 and 9 because random will not return 1
+//        and floor rounds down
+//        Q.E.D 
+//        1 + 10*math.random().floor 
+//        will return between 1-10
+
+
+//        ii. 1 between 1-26
+//         working with the previous solution
+//         1 + 26*math.random().floor
+//         should return between 1-26
+//        not realllly random would need to do
+//        (math.random()+26*math.random()).floor
+//        but random enough for gibberish strings
+//
+//     c.iterate wordRNG times
+//        i.charRNG -> letter
+//        ii.add letter to string
+//  3. adds string to array
+//  4. checks length of array if at length 
+//    returns or continues
+//output:array with integer length containing
+//      varying length (1-10) strings 
+
+function gibberishARRAY(length){
+  rngArray = [];
+  for(i = 0;i<length;i++){
+
+  };
+return rngArray
 }
 
 //Driver Code====================================================
