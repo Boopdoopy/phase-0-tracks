@@ -65,16 +65,11 @@ console.log(ferrari);
 console.log("Something lame!");
 console.log(h3);
 
+for (var key in h3){
+  if (!h3.hasOwnProperty(key)) continue;
+  console.log(key + ":" + h3[key]);
 
-// var car1
-// var car2
-// var car3
-// var car4
-
-// for (i=0;i<carNames.length;i++) {
-  
-// }
-
+}
 
 
 
