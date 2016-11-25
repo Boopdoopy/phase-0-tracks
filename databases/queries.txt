@@ -8,7 +8,7 @@ INSERT INTO cities (name, is_capital, state_id) VALUES ("Montgomery","true",1),(
 
 Used the state data from previous challenge and plain-text founding dates/capitals in ruby to spit it all out in the right formats
 
-SELECT * FROM states;
+2. SELECT * FROM states;
 1|Alabama|-1821|false
 2|Alaska|-1961|true
 3|Arizona|-1924|false
@@ -62,4 +62,135 @@ SELECT * FROM states;
 
 realized it wasn't showing the whole date due to misformatting data ran:
 
-UPDATE states SET became_state="1819-12-14" WHERE name="Alabama"; UPDATE states SET became_state="1959-01-03" WHERE name="Alaska"; UPDATE states SET became_state="1912-02-14" WHERE name="Arizona"; UPDATE states SET became_state="1836-06-15" WHERE name="Arkansas"; UPDATE states SET became_state="1850-09-09" WHERE name="California"; UPDATE states SET became_state="1876-08-01" WHERE name="Colorado"; UPDATE states SET became_state="1788-01-09" WHERE name="Connecticut"; UPDATE states SET became_state="1787-12-07" WHERE name="Delaware"; UPDATE states SET became_state="1845-03-03" WHERE name="Florida"; UPDATE states SET became_state="1788-01-02" WHERE name="Georgia"; UPDATE states SET became_state="1959-08-21" WHERE name="Hawaii"; UPDATE states SET became_state="1890-07-03" WHERE name="Idaho"; UPDATE states SET became_state="1818-12-03" WHERE name="Illinois"; UPDATE states SET became_state="1816-12-11" WHERE name="Indiana"; UPDATE states SET became_state="1846-12-28" WHERE name="Iowa"; UPDATE states SET became_state="1861-01-29" WHERE name="Kansas"; UPDATE states SET became_state="1792-06-01" WHERE name="Kentucky"; UPDATE states SET became_state="1812-04-30" WHERE name="Louisiana"; UPDATE states SET became_state="1820-03-15" WHERE name="Maine"; UPDATE states SET became_state="1788-04-28" WHERE name="Maryland"; UPDATE states SET became_state="1788-02-06" WHERE name="Massachusetts"; UPDATE states SET became_state="1837-01-26" WHERE name="Michigan"; UPDATE states SET became_state="1858-05-11" WHERE name="Minnesota"; UPDATE states SET became_state="1817-12-10" WHERE name="Mississippi"; UPDATE states SET became_state="1821-08-10" WHERE name="Missouri"; UPDATE states SET became_state="1889-11-08" WHERE name="Montana"; UPDATE states SET became_state="1867-03-01" WHERE name="Nebraska"; UPDATE states SET became_state="1864-10-31" WHERE name="Nevada"; UPDATE states SET became_state="1788-06-21" WHERE name="New Hampshire"; UPDATE states SET became_state="1787-12-18" WHERE name="New Jersey"; UPDATE states SET became_state="1912-01-06" WHERE name="New Mexico"; UPDATE states SET became_state="1788-07-26" WHERE name="New York"; UPDATE states SET became_state="1789-11-21" WHERE name="North Carolina"; UPDATE states SET became_state="1889-11-02" WHERE name="North Dakota"; UPDATE states SET became_state="1803-03-01" WHERE name="Ohio"; UPDATE states SET became_state="1907-11-16" WHERE name="Oklahoma"; UPDATE states SET became_state="1859-02-14" WHERE name="Oregon"; UPDATE states SET became_state="1787-12-12" WHERE name="Pennsylvania"; UPDATE states SET became_state="1790-05-29" WHERE name="Rhode Island"; UPDATE states SET became_state="1788-05-23" WHERE name="South Carolina"; UPDATE states SET became_state="1889-11-02" WHERE name="South Dakota"; UPDATE states SET became_state="1796-06-01" WHERE name="Tennessee"; UPDATE states SET became_state="1845-12-29" WHERE name="Texas"; UPDATE states SET became_state="1896-01-04" WHERE name="Utah"; UPDATE states SET became_state="1791-03-04" WHERE name="Vermont"; UPDATE states SET became_state="1788-06-25" WHERE name="Virginia"; UPDATE states SET became_state="1889-11-11" WHERE name="Washington"; UPDATE states SET became_state="1863-06-20" WHERE name="West Virginia"; UPDATE states SET became_state="1848-05-29" WHERE name="Wisconsin"; UPDATE states SET became_state="1890-07-10" WHERE name="Wyoming";
+2. UPDATE states SET became_state="1819-12-14" WHERE name="Alabama"; UPDATE states SET became_state="1959-01-03" WHERE name="Alaska"; UPDATE states SET became_state="1912-02-14" WHERE name="Arizona"; UPDATE states SET became_state="1836-06-15" WHERE name="Arkansas"; UPDATE states SET became_state="1850-09-09" WHERE name="California"; UPDATE states SET became_state="1876-08-01" WHERE name="Colorado"; UPDATE states SET became_state="1788-01-09" WHERE name="Connecticut"; UPDATE states SET became_state="1787-12-07" WHERE name="Delaware"; UPDATE states SET became_state="1845-03-03" WHERE name="Florida"; UPDATE states SET became_state="1788-01-02" WHERE name="Georgia"; UPDATE states SET became_state="1959-08-21" WHERE name="Hawaii"; UPDATE states SET became_state="1890-07-03" WHERE name="Idaho"; UPDATE states SET became_state="1818-12-03" WHERE name="Illinois"; UPDATE states SET became_state="1816-12-11" WHERE name="Indiana"; UPDATE states SET became_state="1846-12-28" WHERE name="Iowa"; UPDATE states SET became_state="1861-01-29" WHERE name="Kansas"; UPDATE states SET became_state="1792-06-01" WHERE name="Kentucky"; UPDATE states SET became_state="1812-04-30" WHERE name="Louisiana"; UPDATE states SET became_state="1820-03-15" WHERE name="Maine"; UPDATE states SET became_state="1788-04-28" WHERE name="Maryland"; UPDATE states SET became_state="1788-02-06" WHERE name="Massachusetts"; UPDATE states SET became_state="1837-01-26" WHERE name="Michigan"; UPDATE states SET became_state="1858-05-11" WHERE name="Minnesota"; UPDATE states SET became_state="1817-12-10" WHERE name="Mississippi"; UPDATE states SET became_state="1821-08-10" WHERE name="Missouri"; UPDATE states SET became_state="1889-11-08" WHERE name="Montana"; UPDATE states SET became_state="1867-03-01" WHERE name="Nebraska"; UPDATE states SET became_state="1864-10-31" WHERE name="Nevada"; UPDATE states SET became_state="1788-06-21" WHERE name="New Hampshire"; UPDATE states SET became_state="1787-12-18" WHERE name="New Jersey"; UPDATE states SET became_state="1912-01-06" WHERE name="New Mexico"; UPDATE states SET became_state="1788-07-26" WHERE name="New York"; UPDATE states SET became_state="1789-11-21" WHERE name="North Carolina"; UPDATE states SET became_state="1889-11-02" WHERE name="North Dakota"; UPDATE states SET became_state="1803-03-01" WHERE name="Ohio"; UPDATE states SET became_state="1907-11-16" WHERE name="Oklahoma"; UPDATE states SET became_state="1859-02-14" WHERE name="Oregon"; UPDATE states SET became_state="1787-12-12" WHERE name="Pennsylvania"; UPDATE states SET became_state="1790-05-29" WHERE name="Rhode Island"; UPDATE states SET became_state="1788-05-23" WHERE name="South Carolina"; UPDATE states SET became_state="1889-11-02" WHERE name="South Dakota"; UPDATE states SET became_state="1796-06-01" WHERE name="Tennessee"; UPDATE states SET became_state="1845-12-29" WHERE name="Texas"; UPDATE states SET became_state="1896-01-04" WHERE name="Utah"; UPDATE states SET became_state="1791-03-04" WHERE name="Vermont"; UPDATE states SET became_state="1788-06-25" WHERE name="Virginia"; UPDATE states SET became_state="1889-11-11" WHERE name="Washington"; UPDATE states SET became_state="1863-06-20" WHERE name="West Virginia"; UPDATE states SET became_state="1848-05-29" WHERE name="Wisconsin"; UPDATE states SET became_state="1890-07-10" WHERE name="Wyoming";
+
+3.SELECT * FROM cities, states WHERE cities.state_id = states.id;
+
+SELECT * FROM cities, states WHERE cities.state_id = states.id;
+1|Montgomery|true|1|1|Alabama|1819-12-14|false
+2|Juneau|true|2|2|Alaska|1959-01-03|true
+3|Phoenix|true|3|3|Arizona|1912-02-14|false
+4|Little Rock|true|4|4|Arkansas|1836-06-15|false
+5|Sacramento|true|5|5|California|1850-09-09|false
+6|Denver|true|6|6|Colorado|1876-08-01|true
+7|Hartford|true|7|7|Connecticut|1788-01-09|true
+8|Dover|true|8|8|Delaware|1787-12-07|true
+9|Tallahassee|true|9|9|Florida|1845-03-03|false
+10|Atlanta|true|10|10|Georgia|1788-01-02|false
+11|Honolulu|true|11|11|Hawaii|1959-08-21|false
+12|Boise|true|12|12|Idaho|1890-07-03|true
+13|Springfield|true|13|13|Illinois|1818-12-03|true
+14|Indianapolis|true|14|14|Indiana|1816-12-11|true
+15|Des Moines|true|15|15|Iowa|1846-12-28|true
+16|Topeka|true|16|16|Kansas|1861-01-29|true
+17|Frankfort|true|17|17|Kentucky|1792-06-01|false
+18|Baton Rouge|true|18|18|Louisiana|1812-04-30|false
+19|Augusta|true|19|19|Maine|1820-03-15|true
+20|Annapolis|true|20|20|Maryland|1788-04-28|false
+21|Boston|true|21|21|Massachusetts|1788-02-06|true
+22|Lansing|true|22|22|Michigan|1837-01-26|true
+23|Saint Paul|true|23|23|Minnesota|1858-05-11|true
+24|Jackson|true|24|24|Mississippi|1817-12-10|false
+25|Jefferson City|true|25|25|Missouri|1821-08-10|false
+26|Helena|true|26|26|Montana|1889-11-08|true
+27|Lincoln|true|27|27|Nebraska|1867-03-01|true
+28|Carson City|true|28|28|Nevada|1864-10-31|false
+29|Concord|true|29|29|New Hampshire|1788-06-21|true
+30|Trenton|true|30|30|New Jersey|1787-12-18|true
+31|Santa Fe|true|31|31|New Mexico|1912-01-06|false
+32|Albany|true|32|32|New York|1788-07-26|true
+33|Raleigh|true|33|33|North Carolina|1789-11-21|false
+34|Bismarck|true|34|34|North Dakota|1889-11-02|true
+35|Columbus|true|35|35|Ohio|1803-03-01|true
+36|Oklahoma City|true|36|36|Oklahoma|1907-11-16|false
+37|Salem|true|37|37|Oregon|1859-02-14|true
+38|Harrisburg|true|38|38|Pennsylvania|1787-12-12|true
+39|Providence|true|39|39|Rhode Island|1790-05-29|true
+40|Columbia|true|40|40|South Carolina|1788-05-23|false
+41|Pierre|true|41|41|South Dakota|1889-11-02|true
+42|Nashville|true|42|42|Tennessee|1796-06-01|false
+43|Austin|true|43|43|Texas|1845-12-29|false
+44|Salt Lake City|true|44|44|Utah|1896-01-04|true
+45|Montpelier|true|45|45|Vermont|1791-03-04|true
+46|Richmond|true|46|46|Virginia|1788-06-25|false
+47|Olympia|true|47|47|Washington|1889-11-11|true
+48|Charleston|true|48|48|West Virginia|1863-06-20|false
+49|Madison|true|49|49|Wisconsin|1848-05-29|true
+50|Cheyenne|true|50|50|Wyoming|1890-07-10|true
+
+4.SELECT cities.name, states.name FROM cities JOIN states ON cities.state_id = states.id;
+
+Montgomery|Alabama
+Juneau|Alaska
+Phoenix|Arizona
+Little Rock|Arkansas
+Sacramento|California
+Denver|Colorado
+Hartford|Connecticut
+Dover|Delaware
+Tallahassee|Florida
+Atlanta|Georgia
+Honolulu|Hawaii
+Boise|Idaho
+Springfield|Illinois
+Indianapolis|Indiana
+Des Moines|Iowa
+Topeka|Kansas
+Frankfort|Kentucky
+Baton Rouge|Louisiana
+Augusta|Maine
+Annapolis|Maryland
+Boston|Massachusetts
+Lansing|Michigan
+Saint Paul|Minnesota
+Jackson|Mississippi
+Jefferson City|Missouri
+Helena|Montana
+Lincoln|Nebraska
+Carson City|Nevada
+Concord|New Hampshire
+Trenton|New Jersey
+Santa Fe|New Mexico
+Albany|New York
+Raleigh|North Carolina
+Bismarck|North Dakota
+Columbus|Ohio
+Oklahoma City|Oklahoma
+Salem|Oregon
+Harrisburg|Pennsylvania
+Providence|Rhode Island
+Columbia|South Carolina
+Pierre|South Dakota
+Nashville|Tennessee
+Austin|Texas
+Salt Lake City|Utah
+Montpelier|Vermont
+Richmond|Virginia
+Olympia|Washington
+Charleston|West Virginia
+Madison|Wisconsin
+Cheyenne|Wyoming
+
+5.DELETE FROM states WHERE is_cold="true";
+sqlite> SELECT * FROM states;
+1|Alabama|1819-12-14|false
+3|Arizona|1912-02-14|false
+4|Arkansas|1836-06-15|false
+5|California|1850-09-09|false
+9|Florida|1845-03-03|false
+10|Georgia|1788-01-02|false
+11|Hawaii|1959-08-21|false
+17|Kentucky|1792-06-01|false
+18|Louisiana|1812-04-30|false
+20|Maryland|1788-04-28|false
+24|Mississippi|1817-12-10|false
+25|Missouri|1821-08-10|false
+28|Nevada|1864-10-31|false
+31|New Mexico|1912-01-06|false
+33|North Carolina|1789-11-21|false
+36|Oklahoma|1907-11-16|false
+40|South Carolina|1788-05-23|false
+42|Tennessee|1796-06-01|false
+43|Texas|1845-12-29|false
+46|Virginia|1788-06-25|false
+48|West Virginia|1863-06-20|false
