@@ -43,15 +43,7 @@ end
 
 
 
-# 2.Functions to add
-#   a. ingredients (compares to cuisines?)
-#     i.input: name, type, shelf_id
-#     ii.output: "INSERT..." etc
-#   b. shelves
-#     i.input: name, location
-#     ii.output: "INSERT..." etc
-#   c. cuisines (private?)
-#     i.input: name, ing1, 2 , 3
+
 # 3.Functions to remove
 #   a. ingredients
 #     i.input: name
