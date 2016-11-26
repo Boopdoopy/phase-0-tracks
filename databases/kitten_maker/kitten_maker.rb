@@ -17,7 +17,7 @@ db.results_as_hash = true #database instance method
 #<<-ANYTHING (whatever string) ANYTHING
 #IF NOT EXISTS <--- super important
 create_table_cmd = <<-SQL
-  CREATE TABLE IF NOT EXISTS kittens(
+  CREATE TABLE IF NOT EXISTS (
     id INTEGER PRIMARY KEY,
     name VARCHAR(255),
     age INT

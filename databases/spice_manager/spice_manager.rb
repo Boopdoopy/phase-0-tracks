@@ -1,4 +1,5 @@
 require 'sqlite3'
+require './spice_functions'
 
 
 # 1. Create tables
@@ -6,16 +7,44 @@ require 'sqlite3'
 #   b.shelves
 #   c.cuisines
 #   d.trinities?
-
+table_structure = {
+  :'ingredients' => [
+    "type VARCHAR(255),",
+    "shelf_id INTEGER,",
+    "FOREIGN KEY (shelf_id) REFERENCES shelves(id)"
+    ],
+  :'shelves' => [
+    "location VARCHAR(255)"
+    ],
+  :'cuisines' => [
+    "father VARCHAR(255),",
+    "son VARCHAR(255),",
+    "holy_ghost VARCHAR(255)"
+    ],
+  :'cuisine_ingredients' => [
+    "cuisine_id INTEGER,",
+    "ingredient_id INTEGER,",
+    "FOREIGN KEY (cuisine_id) REFERENCES cuisines(id)",
+    "FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)"
+  ]
+}
 databaisse = SQLite3::Database.new("spice_manager.db")
-databaisse.results_as_has = true
+databaisse.results_as_hash = true
 #like bouillabaisse get it?
+
+
+
+#make all the tables
+startup_tables = hash_to_table(table_structure)
+startup_tables.each do |cmd|
+  databaisse.execute(cmd)
+end
 
 
 
 
 # 2.Functions to add
-#   a. ingredients
+#   a. ingredients (compares to cuisines?)
 #     i.input: name, type, shelf_id
 #     ii.output: "INSERT..." etc
 #   b. shelves
