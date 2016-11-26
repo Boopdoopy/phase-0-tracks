@@ -200,4 +200,68 @@ RESEARCH ON YOUR OWN
 2. SELECT states.name, cities.name
 FROM cities INNER JOIN states ON cities.state_id = states.id;
 
+Alabama|Montgomery
+Arizona|Phoenix
+Arkansas|Little Rock
+California|Sacramento
+Florida|Tallahassee
+Georgia|Atlanta
+Hawaii|Honolulu
+Kentucky|Frankfort
+Louisiana|Baton Rouge
+Maryland|Annapolis
+Mississippi|Jackson
+Missouri|Jefferson City
+Nevada|Carson City
+New Mexico|Santa Fe
+North Carolina|Raleigh
+Oklahoma|Oklahoma City
+South Carolina|Columbia
+Tennessee|Nashville
+Texas|Austin
+Virginia|Richmond
+West Virginia|Charleston
+
 DELETE cities FROM cities LEFT JOIN states ON cities.state_id = states.id WHERE cities.state_id IS NULL;
+
+DELETE city
+FROM cities city
+LEFT JOIN states state
+  ON cities.state_id=states.id
+WHERE city.state_id IS NULL;
+
+DELETE c FROM cities AS c LEFT OUTER JOIN states AS s ON c.state_id = s.id WHERE s.id IS NULL;
+
+Couldn't figure out how to delete during a join
+
+SELECT cities.name FROM cities OUTER JOIN states ON cities.state_id = states.id WHERE states.id IS NULL;
+
+Juneau
+Denver
+Hartford
+Dover
+Boise
+Springfield
+Indianapolis
+Des Moines
+Topeka
+Augusta
+Boston
+Lansing
+Saint Paul
+Helena
+Lincoln
+Concord
+Trenton
+Albany
+Bismarck
+Columbus
+Salem
+Harrisburg
+Providence
+Pierre
+Salt Lake City
+Montpelier
+Olympia
+Madison
+Cheyenne
