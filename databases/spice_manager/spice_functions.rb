@@ -14,7 +14,6 @@ end
 
 module Kitchen
 
-
 def new_shelf(name,location)
   base_cmd = ["INSERT INTO ", " VALUES",";"]
   base_cmd.insert(1,"shelves")
@@ -24,9 +23,19 @@ def new_shelf(name,location)
 end 
 
 def new_stock(name,type,shelf_id)
+  base_cmd = ["INSERT INTO ", " VALUES",";"]
+  base_cmd.insert(1,"ingredients")
+  base_cmd.insert(2," (name, type, shelf_id)")
+  base_cmd.insert(4," (\"#{name}\",\"#{type}\",#{shelf_id})")
+  result = base_cmd.join
 end
 
 def new_cuisine(name,father,son,holy_ghost)
+  base_cmd = ["INSERT INTO ", " VALUES",";"]
+  base_cmd.insert(1,"cuisines")
+  base_cmd.insert(2," (name, father, son, holy_ghost)")
+  base_cmd.insert(4," (\"#{name}\",\"#{father}\",\"#{son}\",\"#{holy_ghost}\")")
+  result = base_cmd.join
 end
 
 end

@@ -9,7 +9,7 @@ end
 
 it "sends the cmd to add an ingredient" do
   out = trainer_cook.new_stock("Thyme","Herb","1")
-    expect(out).to eq "INSERT INTO ingredients (name, age, perch_pref, cuddly) VALUES (\"Thyme\",\"Herb\",1);"
+    expect(out).to eq "INSERT INTO ingredients (name, type, shelf_id) VALUES (\"Thyme\",\"Herb\",1);"
 end
 
 it "sends the cmd to add a cuisine" do
