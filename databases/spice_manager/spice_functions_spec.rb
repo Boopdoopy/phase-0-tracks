@@ -3,15 +3,20 @@ require './spice_functions'
 describe Kitchen do
   let(:trainer_cook){Tester.new}
   let(:testabase){SQLite3::Database.new("testabase.db")}
-  before(:each){testabase.execute("DROP TABLE IF EXISTS ingredients")}
-  before(:each){testabase.execute("DROP TABLE IF EXISTS cuisines")}
-  before(:each){testabase.execute("DROP TABLE IF EXISTS shelves")}
+  
 
 
-# it "sends the cmd to add a shelf" do
-#   out = 
-#   expect(out).to eq "INSERT INTO shelves (name) VALUES (\"Top\",\"Spice Cabinet\");"
-# end
+it "cleans up my rspec by dropping tables" do
+ testabase.execute("DROP TABLE IF EXISTS ingredients")
+ testabase.execute("DROP TABLE IF EXISTS cuisines")
+ testabase.execute("DROP TABLE IF EXISTS shelves")
+ expect(testabase.execute("
+      SELECT name 
+        FROM sqlite_master 
+        WHERE type='table' 
+        AND name='table_name'")).to eq([])
+#That was significantly more difficult than I thought
+end
 
 #huh so execute returns an empty array
 # it "sends the cmd to add an ingredient" do
@@ -62,5 +67,20 @@ describe Kitchen do
       {"id"=>2, "name"=>"Sage", "type"=>"Herb", "shelf_id"=>1, 0=>2, 1=>"Sage", 2=>"Herb", 3=>1}])
 
     end
+    it "returns the shelf that an ingredient is on" do
+      testabase.results_as_hash = true
+      expect(trainer_cook.where_is(testabase,"Thyme")).to eq([{"name"=>"Top shelf of pantry",0=>"Top shelf of pantry"}])
+
+    end
+
+    it "returns true if a ingredient is present" do
+      expect(trainer_cook.do_i_have(testabase,"Thyme")).to eq true
+    end
+
+    it "returns false if an ingredient isn't present" do
+      expect(trainer_cook.do_i_have(testabase,"Garlic")).to eq false
+    end
+
+
 
 end

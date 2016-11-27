@@ -12,8 +12,8 @@ def hash_to_table(tables)
     return create_table_array
 end 
 module Kitchen
-def new_shelf(db, name )
-  db.execute("INSERT INTO shelves (name ) VALUES (?)", [name])
+def new_shelf(db, shelf_name)
+  db.execute("INSERT INTO shelves(name) VALUES (\"#{shelf_name}\")")
 end
 
 def new_stock(db, name, type, shelf_id)
@@ -33,7 +33,7 @@ def ingredients(db, type="all")
       db.execute("SELECT * FROM ingredients WHERE type=\"#{type}\"")
     end
 end
-#Returns a hash for each ingredient within an array
+#Returns an array with a hash for each ingredient 
 
 
 def on_shelf(db, shelf_name)
@@ -49,11 +49,40 @@ def on_shelf(db, shelf_name)
         WHERE shelf_id=#{shelf_id[0]["id"]}"
         ) #the array of hashes is not good for readability
 end
+#Returns an array with a hash for each ingredient
 
-def where_is(ingr_name)
+def where_is(db, ingr_name)
+  #take ingr name
+  #get shelf id
+  #take shelf id
+  #get shelf
+  #return shelf
+    ingr_name = (
+    "SELECT DISTINCT shelves.name
+      FROM shelves 
+        INNER JOIN ingredients 
+        ON ingredients.shelf_id = shelves.id 
+          WHERE ingredients.name=\"#{ingr_name}\""
+        )
+    db.execute(ingr_name)
+end
+#Returns an array with a hash of shelf name and 0=>shelf name
+
+def do_i_have(db, ingr_name)
+  #take ingr name
+  #query
+  #return true if found, else false
+  found = db.execute(
+    "SELECT ingredients.name
+      FROM ingredients"
+      )
+  found.flatten.include?(ingr_name)
 end
 
-def do_i_have(ingr_name)
+def holy_trinity_of(db,cuisine_name)
+  #take cuisine name
+  #query
+  #return father, son, and holy ghost ingr
 end
 
 end
