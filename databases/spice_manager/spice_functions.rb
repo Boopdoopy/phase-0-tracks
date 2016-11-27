@@ -80,9 +80,12 @@ def do_i_have(db, ingr_name)
 end
 
 def holy_trinity_of(db,cuisine_name)
-  #take cuisine name
-  #query
-  #return father, son, and holy ghost ingr
+  trinity = db.execute(
+    "SELECT cuisines.father,cuisines.son,cuisines.holy_ghost
+      FROM cuisines
+      WHERE cuisines.name =\"#{cuisine_name}\""
+    )
+  trinity.flatten
 end
 
 end

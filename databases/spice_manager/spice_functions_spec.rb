@@ -81,6 +81,19 @@ end
       expect(trainer_cook.do_i_have(testabase,"Garlic")).to eq false
     end
 
+    it "returns an array of the holy trinity" do
+      testabase.execute("CREATE TABLE IF NOT EXISTS cuisines(
+                          id INTEGER PRIMARY KEY, 
+                          name VARCHAR(255), 
+                          father VARCHAR(255), 
+                          son VARCHAR(255), 
+                          holy_ghost VARCHAR(255))"
+                          )
+      trainer_cook.new_cuisine(testabase,"Greek","lemon","olive oil","oregano")
+      expect(trainer_cook.holy_trinity_of(testabase,"Greek")).to eq(["lemon","olive oil","oregano"])
+    end
+
+
 
 
 end
