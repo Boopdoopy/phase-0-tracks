@@ -26,14 +26,14 @@ end
 #Returns an empty array
 
 
-def ingredients(db, type="all")
-    if type == "all"
-      db.execute("SELECT * FROM ingredients")
+def inventory(db,store="ingredients", category="all")
+    if category == "all" or store != "ingredients"
+      db.execute("SELECT #{store}.name FROM #{store}")
     else
-      db.execute("SELECT * FROM ingredients WHERE type=\"#{type}\"")
+      db.execute("SELECT #{store}.name FROM #{store} WHERE type=\"#{category}\"")
     end
 end
-#Returns an array with a hash for each ingredient 
+#Returns an array of arrays 
 
 
 def on_shelf(db, shelf_name)
@@ -46,7 +46,7 @@ def on_shelf(db, shelf_name)
   shelf_contains = db.execute(
     "SELECT * 
       FROM ingredients        
-        WHERE shelf_id=#{shelf_id[0]["id"]}"
+        WHERE shelf_id=#{shelf_id[0][0]}"
         ) #the array of hashes is not good for readability
 end
 #Returns an array with a hash for each ingredient
@@ -64,7 +64,7 @@ def where_is(db, ingr_name)
         ON ingredients.shelf_id = shelves.id 
           WHERE ingredients.name=\"#{ingr_name}\""
         )
-    db.execute(ingr_name)
+    db.execute(ingr_name).flatten
 end
 #Returns an array with a hash of shelf name and 0=>shelf name
 
@@ -81,9 +81,9 @@ end
 
 def holy_trinity_of(db,cuisine_name)
   trinity = db.execute(
-    "SELECT cuisines.father,cuisines.son,cuisines.holy_ghost
+    "SELECT cuisines.father, cuisines.son, cuisines.holy_ghost
       FROM cuisines
-      WHERE cuisines.name =\"#{cuisine_name}\""
+      WHERE cuisines.name=\"#{cuisine_name}\""
     )
   trinity.flatten
 end
@@ -98,6 +98,29 @@ def delete(db, ingr_name,table)
     false
   end
 end
+
+def menu_options(db)
+  hand_of_cards = inventory(db)
+  hand_of_cards.flatten!
+
+  three_of_a_kind = Hash.new
+  scoring_hands = inventory(db,"cuisines").flatten
+  scoring_hands.each do |cuisine_name|
+    flop = holy_trinity_of(db,cuisine_name)
+    bet = 0
+    flop.each do |lucky_card|
+      if hand_of_cards.include?(lucky_card)
+        bet += 1
+      end
+    end
+    if bet == 3
+      three_of_a_kind.store(cuisine_name,flop)
+    end
+  end
+  three_of_a_kind
+end
+
+
 
 
 
