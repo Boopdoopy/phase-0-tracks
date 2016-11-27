@@ -11,7 +11,7 @@ def hash_to_table(tables)
     end
     return create_table_array
 end 
-
+module Kitchen
 def new_shelf(db, name )
   db.execute("INSERT INTO shelves (name ) VALUES (?)", [name])
 end
@@ -34,9 +34,20 @@ def ingredients(db, type="all")
     end
 end
 #Returns a hash for each ingredient within an array
-module Kitchen
-  
-def on_shelf(shelf_name)
+
+
+def on_shelf(db, shelf_name)
+  shelf = (
+    "SELECT shelves.id 
+      FROM shelves 
+        WHERE name=\"#{shelf_name}\""
+        )
+  shelf_id = db.execute(shelf)                                        
+  shelf_contains = db.execute(
+    "SELECT * 
+      FROM ingredients        
+        WHERE shelf_id=#{shelf_id[0]["id"]}"
+        ) #the array of hashes is not good for readability
 end
 
 def where_is(ingr_name)
