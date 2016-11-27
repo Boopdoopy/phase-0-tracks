@@ -13,9 +13,7 @@ table_structure = {
     "shelf_id INTEGER,",
     "FOREIGN KEY (shelf_id) REFERENCES shelves(id)"
     ],
-  :'shelves' => [
-    "location VARCHAR(255)"
-    ],
+  :'shelves' => [],
   :'cuisines' => [
     "father VARCHAR(255),",
     "son VARCHAR(255),",
@@ -62,16 +60,7 @@ end
 #   a. ingredients
 #     i.input: name
 #     ii.output: "DELETE FROM..."etc
-# 4.Functions to view
-#   a. ingredients
-#     i.input: type
-#     ii.output:array of ingredients
-#   b. shelves
-#     i.input: shelf.name
-#     ii.output: hash of ingrediants with shelf.name as key
-#   c. cuisines
-#     i.input: name
-#     ii.output: array of trinity
+
 # 5.Functions to compare/analyze
 #   a. What can I make with what's here?
       # i.input:ingredient(s table), cuisines table
