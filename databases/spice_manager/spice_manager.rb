@@ -56,10 +56,6 @@ end
 
 
 
-# 3.Functions to remove
-#   a. ingredients
-#     i.input: name
-#     ii.output: "DELETE FROM..."etc
 
 # 5.Functions to compare/analyze
 #   a. What can I make with what's here?

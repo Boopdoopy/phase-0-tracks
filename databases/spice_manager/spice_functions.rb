@@ -68,13 +68,13 @@ def where_is(db, ingr_name)
 end
 #Returns an array with a hash of shelf name and 0=>shelf name
 
-def do_i_have(db, ingr_name)
+def do_i_have(db, ingr_name,table="ingredients")
   #take ingr name
   #query
   #return true if found, else false
   found = db.execute(
-    "SELECT ingredients.name
-      FROM ingredients"
+    "SELECT #{table}.name
+      FROM #{table}"
       )
   found.flatten.include?(ingr_name)
 end
@@ -88,7 +88,22 @@ def holy_trinity_of(db,cuisine_name)
   trinity.flatten
 end
 
+def delete(db, ingr_name,table)
+  if do_i_have(db,ingr_name,table)
+    db.execute(
+      "DELETE FROM #{table}
+        WHERE #{table}.name =\"#{ingr_name}\"")
+    true
+  else
+    false
+  end
 end
+
+
+
+end
+
+
 
 
 
@@ -98,6 +113,12 @@ class Tester
   include Kitchen
 end
 #My tester wrapper=====================
+
+# 3.Functions to remove
+#   a. ingredients
+#     i.input: name
+#     ii.output: "DELETE FROM..."etc
+
 
 # 4.Functions to view
 #   a. ingredients

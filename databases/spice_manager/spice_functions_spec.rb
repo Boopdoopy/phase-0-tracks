@@ -93,6 +93,15 @@ end
       expect(trainer_cook.holy_trinity_of(testabase,"Greek")).to eq(["lemon","olive oil","oregano"])
     end
 
+    it "removes an ingredient and returns true" do
+      expect(trainer_cook.delete(testabase,"Thyme","ingredients")).to eq true
+      expect(trainer_cook.do_i_have(testabase,"Thyme")).to eq false
+    end
+
+    it "returns false if trying to delete non-existant ingredient" do
+      expect(trainer_cook.delete(testabase,"Garlic","ingredients")).to eq false
+    end
+
 
 
 
