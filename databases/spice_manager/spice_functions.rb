@@ -12,37 +12,52 @@ def hash_to_table(tables)
     return create_table_array
 end 
 
+# module Kitchen
+
+# def new_shelf(name,location)
+#   base_cmd = ["INSERT INTO ", " VALUES",";"]
+#   base_cmd.insert(1,"shelves")
+#   base_cmd.insert(2," (name, location)")
+#   base_cmd.insert(4," (\"#{name}\",\"#{location}\")")
+#   result = base_cmd.join
+# end 
+
+# def new_stock(name,type,shelf_id)
+#   base_cmd = ["INSERT INTO ", " VALUES",";"]
+#   base_cmd.insert(1,"ingredients")
+#   base_cmd.insert(2," (name, type, shelf_id)")
+#   base_cmd.insert(4," (\"#{name}\",\"#{type}\",#{shelf_id})")
+#   result = base_cmd.join
+# end
+
+# def new_cuisine(name,father,son,holy_ghost)
+#   base_cmd = ["INSERT INTO ", " VALUES",";"]
+#   base_cmd.insert(1,"cuisines")
+#   base_cmd.insert(2," (name, father, son, holy_ghost)")
+#   base_cmd.insert(4," (\"#{name}\",\"#{father}\",\"#{son}\",\"#{holy_ghost}\")")
+#   result = base_cmd.join
+# end
+
+def new_shelf(db, name, location)
+  db.execute("INSERT INTO shelves (name, location) VALUES (?, ?)", [name, location])
+end
+
+def new_stock(db, name, type, shelf_id)
+  db.execute("INSERT INTO ingredients (name, type, shelf_id) VALUES (?, ?, ?)", [name, type, shelf_id])
+end
+
+def new_cuisine(db, name, father, son, holy_ghost)
+  db.execute("INSERT INTO cuisines (name, father, son, holy_ghost) VALUES (?, ?, ?, ?)", [name, father, son, holy_ghost])
+end
+
+#My tester wrapper=====================
 module Kitchen
-
-def new_shelf(name,location)
-  base_cmd = ["INSERT INTO ", " VALUES",";"]
-  base_cmd.insert(1,"shelves")
-  base_cmd.insert(2," (name, location)")
-  base_cmd.insert(4," (\"#{name}\",\"#{location}\")")
-  result = base_cmd.join
-end 
-
-def new_stock(name,type,shelf_id)
-  base_cmd = ["INSERT INTO ", " VALUES",";"]
-  base_cmd.insert(1,"ingredients")
-  base_cmd.insert(2," (name, type, shelf_id)")
-  base_cmd.insert(4," (\"#{name}\",\"#{type}\",#{shelf_id})")
-  result = base_cmd.join
-end
-
-def new_cuisine(name,father,son,holy_ghost)
-  base_cmd = ["INSERT INTO ", " VALUES",";"]
-  base_cmd.insert(1,"cuisines")
-  base_cmd.insert(2," (name, father, son, holy_ghost)")
-  base_cmd.insert(4," (\"#{name}\",\"#{father}\",\"#{son}\",\"#{holy_ghost}\")")
-  result = base_cmd.join
-end
-
 end
 
 class Tester
   include Kitchen
 end
+#My tester wrapper=====================
 # 2.Functions to add
 #   a. ingredients (compares to cuisines?)
 #     i.input: name, type, shelf_id

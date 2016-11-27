@@ -40,6 +40,20 @@ startup_tables.each do |cmd|
   databaisse.execute(cmd)
 end
 
+# new_shelf(databaisse,"Top shelf","pantry")
+# # databaisse.execute(top_pantry)
+# # p top_pantry
+
+# new_stock(databaisse,"Thyme","Herb","1")
+# # databaisse.execute(thyme)
+# # p thyme
+
+# new_cuisine(databaisse,"Greek","lemon","olive oil","oregano")
+# # databaisse.execute(greek)
+# # p greek
+
+# food = databaisse.execute("SELECT * FROM ingredients")
+# puts food
 
 
 
