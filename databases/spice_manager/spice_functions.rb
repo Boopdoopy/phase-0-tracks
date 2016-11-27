@@ -99,6 +99,7 @@ def delete(db, ingr_name,table)
   end
 end
 
+
 def menu_options(db)
   hand_of_cards = inventory(db)
   hand_of_cards.flatten!
@@ -119,6 +120,24 @@ def menu_options(db)
   end
   three_of_a_kind
 end
+
+def shopping_list(db, lonely_ingr)
+  buy_list = db.execute(
+    "SELECT cuisines.name
+      FROM cuisines 
+        WHERE cuisines.father=\"#{lonely_ingr}\" 
+        OR cuisines.son=\"#{lonely_ingr}\" 
+        OR cuisines.holy_ghost=\"#{lonely_ingr}\""
+    ).flatten
+  result_hash = Hash.new
+  buy_list.each do |cuisine|
+    ingr_array = holy_trinity_of(db,cuisine)
+    ingr_array.select!{|ingredient|ingredient != lonely_ingr}
+    result_hash.store(cuisine,ingr_array)
+  end
+  result_hash
+end
+
 
 
 

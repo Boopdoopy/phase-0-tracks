@@ -27,7 +27,7 @@ table_structure = {
   ]
 }
 databaisse = SQLite3::Database.new("spice_manager.db")
-databaisse.results_as_hash = true
+# databaisse.results_as_hash = true
 #like bouillabaisse get it?
 
 
