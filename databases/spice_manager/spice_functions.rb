@@ -13,6 +13,7 @@ def hash_to_table(tables)
 end 
 
 module Kitchen
+
 def new_shelf(db, shelf_name)
   db.execute("INSERT INTO shelves(name) VALUES (\"#{shelf_name}\")")
 end
@@ -138,12 +139,27 @@ def shopping_list(db, lonely_ingr)
   end
   result_hash
 end
+end
 
+def menu_template (array_options=[
+    "View",
+    "Guide",
+    "Add",
+    "Remove",
+    "Find",
+    "Exit"
+  ])
+  border = "\n-----------------------------------------------------"
+  prompt = "\nHow can I help you?\n"
 
-
-
-
-
+  array_options.each do |option|
+    prompt += option.insert(1,")").insert(0," (")
+    prompt += " |"
+    end
+  print border
+  print prompt
+  print border
+  gets.chomp!.upcase
 end
 
 

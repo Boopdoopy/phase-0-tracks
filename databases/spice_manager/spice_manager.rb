@@ -1,5 +1,6 @@
 require 'sqlite3'
 require './spice_functions'
+require ',/cuisine_data'
 
 
 # 1. Create tables
@@ -26,7 +27,7 @@ table_structure = {
     "FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)"
   ]
 }
-databaisse = SQLite3::Database.new("spice_manager.db")
+databaisse = SQLite3::Database.new("spice_manager.db"){include Kitchen}
 # databaisse.results_as_hash = true
 #like bouillabaisse get it?
 
@@ -50,8 +51,25 @@ end
 #-lists all produce
 #-asks whether things are still good
 
+print "Welcome to Spice Manager!"
 
-
+until choice == "E"
+  choice = menu_template
+  case choice
+    when "V"
+      choice = menu_template(["Ingredients","Shelves","Cuisines","Main Menu"])
+    when "G"
+      choice = menu_template(["How can I use this?","What can I make with what's here?","Main Menu"])
+    when "A"
+      choice = menu_template(["","Main Menu"])
+    when "R"
+    when "F"
+    when "E"
+    else
+      puts "ERROR"
+      next
+  end
+end
 
 #main screen options for: 
 #-view all ingredients
