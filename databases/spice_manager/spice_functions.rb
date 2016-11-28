@@ -1,3 +1,15 @@
+def new_shelf(db, shelf_name)
+  db.execute("INSERT INTO shelves(name) VALUES (\"#{shelf_name}\")")
+end
+
+def new_stock(db, name, type, shelf_id)
+  db.execute("INSERT INTO ingredients (name, type, shelf_id) VALUES (?, ?, ?)", [name, type, shelf_id])
+end
+
+def new_cuisine(db, name, father, son, holy_ghost,technique)
+  db.execute("INSERT INTO cuisines (name, father, son, holy_ghost, technique) VALUES (?, ?, ?, ?, ?)", [name, father, son, holy_ghost, technique])
+end
+
 def hash_to_table(tables)
     create_table_array = Array.new
     content_string = String.new
@@ -12,20 +24,52 @@ def hash_to_table(tables)
     return create_table_array
 end 
 
+def new_user(db)
+table_status = db.execute("
+      SELECT name 
+        FROM sqlite_master 
+        WHERE type='table' 
+        AND name='table_name'")
+  if table_status == []
+    print "Welcome to spice manager!\nJust need to set some stuff up here"
+    startup_tables = hash_to_table(TABLE_STRUCTURE)
+      startup_tables.each do |cmd|
+        db.execute(cmd)
+      end
+    print "."
+
+    CUISINE_DATA.each do |cuisine_name, aspects_of|
+      name=cuisine_name.to_s
+      father=String.new
+      son=String.new
+      holy_ghost=String.new
+      technique=String.new
+      i = 0
+      aspects_of.each do |aspect|
+        case i
+          when 0
+            father = aspect
+          when 1
+            son = aspect
+          when 2
+            holy_ghost = aspect
+          when 3
+            technique = aspect
+        end
+      end
+      new_cuisine(db, name, father, son, holy_ghost,technique)
+    end
+
+    print "."
+    sleep(0.5)
+    print "."
+    print "\nThank's for waiting!"
 
 
-def new_shelf(db, shelf_name)
-  db.execute("INSERT INTO shelves(name) VALUES (\"#{shelf_name}\")")
+  else
+    print "Welcome back!\n"
+  end
 end
-
-def new_stock(db, name, type, shelf_id)
-  db.execute("INSERT INTO ingredients (name, type, shelf_id) VALUES (?, ?, ?)", [name, type, shelf_id])
-end
-
-def new_cuisine(db, name, father, son, holy_ghost)
-  db.execute("INSERT INTO cuisines (name, father, son, holy_ghost) VALUES (?, ?, ?, ?)", [name, father, son, holy_ghost])
-end
-#Returns an empty array
 
 
 def inventory(db,store="ingredients", category="all")
@@ -34,9 +78,7 @@ def inventory(db,store="ingredients", category="all")
     else
       db.execute("SELECT #{store}.name FROM #{store} WHERE type=\"#{category}\"")
     end
-end
-#Returns an array of arrays 
-
+end 
 
 def on_shelf(db, shelf_name)
   shelf = (
@@ -49,16 +91,11 @@ def on_shelf(db, shelf_name)
     "SELECT * 
       FROM ingredients        
         WHERE shelf_id=#{shelf_id[0][0]}"
-        ) #the array of hashes is not good for readability
+        )
 end
-#Returns an array with a hash for each ingredient
+
 
 def where_is(db, ingr_name)
-  #take ingr name
-  #get shelf id
-  #take shelf id
-  #get shelf
-  #return shelf
     ingr_name = (
     "SELECT DISTINCT shelves.name
       FROM shelves 
@@ -68,12 +105,9 @@ def where_is(db, ingr_name)
         )
     db.execute(ingr_name).flatten
 end
-#Returns an array with a hash of shelf name and 0=>shelf name
+
 
 def do_i_have(db, ingr_name,table="ingredients")
-  #take ingr name
-  #query
-  #return true if found, else false
   found = db.execute(
     "SELECT #{table}.name
       FROM #{table}"
@@ -123,6 +157,23 @@ def menu_options(db)
   three_of_a_kind
 end
 
+def cuisine_technique(db,cuisine_name)
+  technique = db.execute(
+    "SELECT cuisines.technique 
+      FROM cuisines 
+        WHERE cuisines.name=\"#{cuisine_name}\"")
+  technique.flatten
+end
+
+def shelf_ident(db,shelf_name)
+  shelf_id = db.execute(
+    "SELECT shelves.id
+      FROM shelves
+        WHERE shelves.name =\"#{shelf_name}\""
+    )
+  shelf_id.flatten
+end
+
 def shopping_list(db, lonely_ingr)
   buy_list = db.execute(
     "SELECT cuisines.name
@@ -163,64 +214,3 @@ def input_getter(input_type)
   print "What #{input_type}?\nINPUT: "
   gets.chomp!.downcase
 end
-
-
-
-
-#My tester wrapper=====================
-# class Tester
-#   include Kitchen
-# end
-#My tester wrapper=====================
-
-# 3.Functions to remove
-#   a. ingredients
-#     i.input: name
-#     ii.output: "DELETE FROM..."etc
-
-
-# 4.Functions to view
-#   a. ingredients
-#     i.input: type
-#     ii.output:array of ingredients
-#   b. shelves
-#     i.input: shelf.name
-#     ii.output: hash of ingrediants with shelf.name as key
-#   c. cuisines
-#     i.input: name
-#     ii.output: array of trinity
-# 2.Functions to add
-#   a. ingredients (compares to cuisines?)
-#     i.input: name, type, shelf_id
-#     ii.output: "INSERT..." etc
-#   b. shelves
-#     i.input: name 
-#     ii.output: "INSERT..." etc
-#   c. cuisines (private?)
-#     i.input: name, ing1, 2 , 3
-
-# module Kitchen
-
-# def new_shelf(name,location)
-#   base_cmd = ["INSERT INTO ", " VALUES",";"]
-#   base_cmd.insert(1,"shelves")
-#   base_cmd.insert(2," (name )")
-#   base_cmd.insert(4," (\"#{name}\",\"#{location}\")")
-#   result = base_cmd.join
-# end 
-
-# def new_stock(name,type,shelf_id)
-#   base_cmd = ["INSERT INTO ", " VALUES",";"]
-#   base_cmd.insert(1,"ingredients")
-#   base_cmd.insert(2," (name, type, shelf_id)")
-#   base_cmd.insert(4," (\"#{name}\",\"#{type}\",#{shelf_id})")
-#   result = base_cmd.join
-# end
-
-# def new_cuisine(name,father,son,holy_ghost)
-#   base_cmd = ["INSERT INTO ", " VALUES",";"]
-#   base_cmd.insert(1,"cuisines")
-#   base_cmd.insert(2," (name, father, son, holy_ghost)")
-#   base_cmd.insert(4," (\"#{name}\",\"#{father}\",\"#{son}\",\"#{holy_ghost}\")")
-#   result = base_cmd.join
-# end

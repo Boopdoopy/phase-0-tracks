@@ -18,42 +18,6 @@ it "cleans up my rspec by dropping tables" do
 #That was significantly more difficult than I thought
 end
 
-#huh so execute returns an empty array
-# it "sends the cmd to add an ingredient" do
-#   testabase.execute("CREATE TABLE IF NOT EXISTS ingredients(id INTEGER PRIMARY KEY, name VARCHAR(255), type VARCHAR(255), shelf_id INTEGER)")
-#    out = trainer_cook.new_stock(testabase,"Thyme","Herb","1")
-#      expect(out).to eq "INSERT INTO ingredients (name, type, shelf_id) VALUES (\"Thyme\",\"Herb\",1);"
-
-#  end
-
-# it "sends the cmd to add a cuisine" do
-#   out = trainer_cook.new_cuisine("Greek","lemon","olive oil","oregano")
-#   expect(out).to eq "INSERT INTO cuisines (name, father, son, holy_ghost) VALUES (\"Greek\",\"lemon\",\"olive oil\",\"oregano\");"
-# end
-#this is what nightmares are made of
-  # it "returns a hash of all ingredients" do
-  #   # testabase = SQLite3::Database.new("testabase.db")
-  #   # #testabase.results_as_hash = true
-  #   trainer_cook.new_stock(testabase,"Thyme","Herb","1")
-  #   trainer_cook.new_stock(testabase,"Sage","Herb","1")
-  #   trainer_cook.new_stock(testabase,"Paprika","Spice","2")
-  #   expect(trainer_cook.ingredients(testabase,"all")).to eq([
-  #     {"id"=>1, "name"=>"Thyme", "type"=>"Herb", "shelf_id"=>1, 0=>1, 1=>"Thyme", 2=>"Herb", 3=>1},
-  #     {"id"=>2, "name"=>"Sage", "type"=>"Herb", "shelf_id"=>1, 0=>2, 1=>"Sage", 2=>"Herb", 3=>1},
-  #     {"id"=>3, "name"=>"Paprika", "type"=>"Spice", "shelf_id"=>1, 0=>3, 1=>"Paprika", 2=>"Spice", 3=>1}])
-  # end
-    # it "returns the shelf_id for a given shelf name" do
-    #   #testabase.results_as_hash = true
-    #   testabase.execute("CREATE TABLE IF NOT EXISTS ingredients(id INTEGER PRIMARY KEY, name VARCHAR(255), type VARCHAR(255), shelf_id INTEGER)")
-    #   testabase.execute("CREATE TABLE IF NOT EXISTS shelves(id INTEGER PRIMARY KEY, name VARCHAR(255))")
-    #   trainer_cook.new_shelf(testabase,"Top shelf of pantry")
-    #   trainer_cook.new_stock(testabase,"Thyme","Herb","1")
-    #   trainer_cook.new_stock(testabase,"Sage","Herb","1")
-    #   trainer_cook.new_stock(testabase,"Paprika","Spice","2")
-    #   expect(trainer_cook.on_shelf(testabase, "Top shelf of pantry")).to eq([{"id"=>1, 0=>1}])
-
-    # end
-
     it "returns the contents of inputted shelf" do
       #testabase.results_as_hash = true
       testabase.execute("CREATE TABLE IF NOT EXISTS ingredients(id INTEGER PRIMARY KEY, name VARCHAR(255), type VARCHAR(255), shelf_id INTEGER)")
@@ -122,8 +86,171 @@ end
       expect(trainer_cook.shopping_list(testabase,"Bell pepper")).to eq ({"Creole"=>["Onion","Celery"]})
     end
 
+#huh so execute returns an empty array
+# it "sends the cmd to add an ingredient" do
+#   testabase.execute("CREATE TABLE IF NOT EXISTS ingredients(id INTEGER PRIMARY KEY, name VARCHAR(255), type VARCHAR(255), shelf_id INTEGER)")
+#    out = trainer_cook.new_stock(testabase,"Thyme","Herb","1")
+#      expect(out).to eq "INSERT INTO ingredients (name, type, shelf_id) VALUES (\"Thyme\",\"Herb\",1);"
+
+#  end
+
+# it "sends the cmd to add a cuisine" do
+#   out = trainer_cook.new_cuisine("Greek","lemon","olive oil","oregano")
+#   expect(out).to eq "INSERT INTO cuisines (name, father, son, holy_ghost) VALUES (\"Greek\",\"lemon\",\"olive oil\",\"oregano\");"
+# end
+#this is what nightmares are made of
+  # it "returns a hash of all ingredients" do
+  #   # testabase = SQLite3::Database.new("testabase.db")
+  #   # #testabase.results_as_hash = true
+  #   trainer_cook.new_stock(testabase,"Thyme","Herb","1")
+  #   trainer_cook.new_stock(testabase,"Sage","Herb","1")
+  #   trainer_cook.new_stock(testabase,"Paprika","Spice","2")
+  #   expect(trainer_cook.ingredients(testabase,"all")).to eq([
+  #     {"id"=>1, "name"=>"Thyme", "type"=>"Herb", "shelf_id"=>1, 0=>1, 1=>"Thyme", 2=>"Herb", 3=>1},
+  #     {"id"=>2, "name"=>"Sage", "type"=>"Herb", "shelf_id"=>1, 0=>2, 1=>"Sage", 2=>"Herb", 3=>1},
+  #     {"id"=>3, "name"=>"Paprika", "type"=>"Spice", "shelf_id"=>1, 0=>3, 1=>"Paprika", 2=>"Spice", 3=>1}])
+  # end
+    # it "returns the shelf_id for a given shelf name" do
+    #   #testabase.results_as_hash = true
+    #   testabase.execute("CREATE TABLE IF NOT EXISTS ingredients(id INTEGER PRIMARY KEY, name VARCHAR(255), type VARCHAR(255), shelf_id INTEGER)")
+    #   testabase.execute("CREATE TABLE IF NOT EXISTS shelves(id INTEGER PRIMARY KEY, name VARCHAR(255))")
+    #   trainer_cook.new_shelf(testabase,"Top shelf of pantry")
+    #   trainer_cook.new_stock(testabase,"Thyme","Herb","1")
+    #   trainer_cook.new_stock(testabase,"Sage","Herb","1")
+    #   trainer_cook.new_stock(testabase,"Paprika","Spice","2")
+    #   expect(trainer_cook.on_shelf(testabase, "Top shelf of pantry")).to eq([{"id"=>1, 0=>1}])
+
+    # end
+
 
 
 
 
 end
+
+#main screen options for: 
+#-view all ingredients
+#-view contents of shelf
+#-find an ingredient
+#-view trinity
+#-add ingredient
+#-add shelf
+#-add cuisine
+#-remove ingredient
+#-remove shelf
+#-remove cuisine
+#-what can I make with what I have?
+    #-shows where each of the things are
+#-what do I need to use this?
+#goodbye screen
+#Remember to clean out your perishables regularly!
+#like bouillabaisse get it?
+#make all the tables
+#consider new file cuisine data which holds
+#-table structure
+#-cuisine list
+#populate cuisine table
+#loading screen
+#-lists all produce
+#-asks whether things are still good
+# new_shelf(databaisse,"Top shelf","pantry")
+# # databaisse.execute(top_pantry)
+# # p top_pantry
+
+# new_stock(databaisse,"Thyme","Herb","1")
+# # databaisse.execute(thyme)
+# # p thyme
+
+# new_cuisine(databaisse,"Greek","lemon","olive oil","oregano")
+# # databaisse.execute(greek)
+# # p greek
+
+# food = databaisse.execute("SELECT * FROM ingredients")
+# puts food
+
+
+
+
+#My tester wrapper=====================
+# class Tester
+#   include Kitchen
+# end
+#My tester wrapper=====================
+
+# 3.Functions to remove
+#   a. ingredients
+#     i.input: name
+#     ii.output: "DELETE FROM..."etc
+
+
+# 4.Functions to view
+#   a. ingredients
+#     i.input: type
+#     ii.output:array of ingredients
+#   b. shelves
+#     i.input: shelf.name
+#     ii.output: hash of ingrediants with shelf.name as key
+#   c. cuisines
+#     i.input: name
+#     ii.output: array of trinity
+# 2.Functions to add
+#   a. ingredients (compares to cuisines?)
+#     i.input: name, type, shelf_id
+#     ii.output: "INSERT..." etc
+#   b. shelves
+#     i.input: name 
+#     ii.output: "INSERT..." etc
+#   c. cuisines (private?)
+#     i.input: name, ing1, 2 , 3
+
+# module Kitchen
+
+# def new_shelf(name,location)
+#   base_cmd = ["INSERT INTO ", " VALUES",";"]
+#   base_cmd.insert(1,"shelves")
+#   base_cmd.insert(2," (name )")
+#   base_cmd.insert(4," (\"#{name}\",\"#{location}\")")
+#   result = base_cmd.join
+# end 
+
+# def new_stock(name,type,shelf_id)
+#   base_cmd = ["INSERT INTO ", " VALUES",";"]
+#   base_cmd.insert(1,"ingredients")
+#   base_cmd.insert(2," (name, type, shelf_id)")
+#   base_cmd.insert(4," (\"#{name}\",\"#{type}\",#{shelf_id})")
+#   result = base_cmd.join
+# end
+
+# def new_cuisine(name,father,son,holy_ghost)
+#   base_cmd = ["INSERT INTO ", " VALUES",";"]
+#   base_cmd.insert(1,"cuisines")
+#   base_cmd.insert(2," (name, father, son, holy_ghost)")
+#   base_cmd.insert(4," (\"#{name}\",\"#{father}\",\"#{son}\",\"#{holy_ghost}\")")
+#   result = base_cmd.join
+# end
+# 5.Functions to compare/analyze
+#   a. What can I make with what's here?
+      # i.input:ingredient(s table), cuisines table
+      #   -iterate through cuisines
+      #   -compare all ingredients to trinities
+      #   -on complete match store cuisine name in hash 
+      #     -with value as array of ingredients
+      #   -return hash
+      # ii.output:hash
+#   b. What do I need In order to use x?
+      # i.input:ingredient.name, cuisine table
+      #   -run what can I make with whats here for ingredient
+      #   -store returned hash in "have all things" 
+      #   -iterate through cuisines
+      #   -compare keys from HaTh on match continue
+      #   -else compare ingredient to trinities
+      #   -on match store name of cuisine as key 
+      #     in hash ("don't have all the things")
+      #   -with value as array of all 
+      #     non-ingrediant.name items
+      #   -combine hashes with deliniation of results
+      # ii.output: return hash
+
+
+
+
