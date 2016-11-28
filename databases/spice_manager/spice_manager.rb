@@ -38,6 +38,61 @@ startup_tables.each do |cmd|
   databaisse.execute(cmd)
 end
 
+#consider new file cuisine data which holds
+#-table structure
+#-cuisine list
+
+
+#populate cuisine table
+
+
+#loading screen
+#-lists all produce
+#-asks whether things are still good
+
+
+
+
+#main screen options for: 
+#-view all ingredients
+#-view contents of shelf
+#-find an ingredient
+#-view trinity
+#-add ingredient
+#-add shelf
+#-add cuisine
+#-remove ingredient
+#-remove shelf
+#-remove cuisine
+#-what can I make with what I have?
+    #-shows where each of the things are
+#-what do I need to use this?
+
+
+
+
+#goodbye screen
+#Remember to clean out your perishables regularly!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # new_shelf(databaisse,"Top shelf","pantry")
 # # databaisse.execute(top_pantry)
 # # p top_pantry

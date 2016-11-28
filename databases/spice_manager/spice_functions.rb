@@ -11,6 +11,7 @@ def hash_to_table(tables)
     end
     return create_table_array
 end 
+
 module Kitchen
 def new_shelf(db, shelf_name)
   db.execute("INSERT INTO shelves(name) VALUES (\"#{shelf_name}\")")
