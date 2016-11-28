@@ -1,90 +1,109 @@
 require 'sqlite3'
 require './spice_functions'
+require './cuisine_data'
 
-
-# 1. Create tables
-#   a.ingredients
-#   b.shelves
-#   c.cuisines
-#   d.trinities?
-table_structure = {
-  :'ingredients' => [
-    "type VARCHAR(255),",
-    "shelf_id INTEGER,",
-    "FOREIGN KEY (shelf_id) REFERENCES shelves(id)"
-    ],
-  :'shelves' => [],
-  :'cuisines' => [
-    "father VARCHAR(255),",
-    "son VARCHAR(255),",
-    "holy_ghost VARCHAR(255)"
-    ],
-  :'cuisine_ingredients' => [
-    "cuisine_id INTEGER,",
-    "ingredient_id INTEGER,",
-    "FOREIGN KEY (cuisine_id) REFERENCES cuisines(id)",
-    "FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)"
-  ]
-}
 databaisse = SQLite3::Database.new("spice_manager.db")
-databaisse.results_as_hash = true
-#like bouillabaisse get it?
 
+print "Welcome to Spice Manager!\n"
+new_user(databaisse)
+choice = "M"
+until choice == "E"
+  #TO DO: Tutorial page
+  choice = menu_template
+  case choice
+    when "V"
+      sub_choice = menu_template("View Menu",["Ingredients","Shelves","Cuisines","Main Menu"])
+      case sub_choice
+        when "I"
+           ingr_inventory = inventory(databaisse)
+           ingr_inventory.flatten.each{|x|puts "#{x}"}
+        when "S"
+           shelf_inventory = inventory(databaisse,"shelves")
+           shelf_inventory.flatten.each{|x|puts "#{x}"}
+        when "C"
+           cuisine_inventory = inventory(databaisse,"cuisines")
+           cuisine_inventory.flatten.each{|x|puts "#{x}"}
+        else
+          next
+      end
+    when "G"
+      sub_choice = menu_template(["Guide Menu","How can I use this?","What can I make with what's here?","Main Menu"])
+      case choice
+        when "H"
+          input = input_getter("ingredient")
+          shopping_list(databaisse,input)
+        when "W"
+          menu_options(databaisse)
+        else
+          next
+      end
+    when "A"
+      sub_choice = menu_template("Add Menu",["Ingredient","Shelf","Cuisine","Main Menu"])
+      case sub_choice
+        when "I"
+          name_of_i = input_getter("is the name of the ingredient")
+          type_of_i = input_getter("type of ingredient(spice, oil, herb, produce)")
+          shelf_id = shelf_ident(databaisse,input_getter("shelf are you storing it on?"))
+          new_stock(databaisse,name_of_i,type_of_i, shelf_id)
+          print inventory(databaisse)
+        when "S"
+          shelf_name = input_getter("is the name of the shelf")
+          new_shelf(databaisse, shelf_name)
+          print inventory(databaisse,"shelves")
+        when "C"
+          cusine_name = input_getter("is the name of the cuisine")
+          father = input_getter("is the first staple ingredient")
+          son = input_getter("is the second staple ingredient")
+          holy_ghost = input_getter("is the last staple ingredient")
+          technique = input_getter("is the cooking technique")
+          new_cuisine(databaisse, cusine_name,father,son,holy_ghost,technique)
+          print inventory(databaisse,"cuisines")
+        else
+          next
+      end
+    when "R"
+      sub_choice = menu_template("Remove Menu",["Ingredient","Shelf","Cuisine","Main Menu"])
+      case sub_choice
+        when "I"
+          name_of_i = input_getter("is the name of the ingredient")
+          delete(databaisse,name_of_i,"ingredients")
+          print inventory(databaisse)
+        when "S"
+          shelf_name = input_getter("is the name of the shelf")
+          delete(databaisse,shelf_name,"shelves")
+          print inventory(databaisse,"shelves")
+        when "C"
+          cusine_name = input_getter("is the name of the cuisine")
+          delete(databaisse,cusine_name,"cuisines")
+          print inventory(databaisse,"cuisines")
+        else
+          next
+      end
+    when "F"
+      sub_choice = menu_template("Find Menu",["Do I have?","Where is?", "Main Menu"])
+      case choice
+        when "D"
+          input = input_getter("ingredient")
+          response = do_i_have(databaisse,input)
+          if response == true
+            here = where_is(input)
+            print "Yup, and it's #{here}"
+          else
+            print "/n Nope"
+          end
+        when "W"
+          input = input_getter("ingredient")
+          print where_is(input)
 
+        else
+          next
+      end
 
-#make all the tables
-startup_tables = hash_to_table(table_structure)
-startup_tables.each do |cmd|
-  databaisse.execute(cmd)
+    when "E"
+      print "Remember to clean out your fridge!\nRotting produce will make your whole fridge taste bad!"
+      next
+    else
+      puts "ERROR"
+      next
+  end
 end
-
-# new_shelf(databaisse,"Top shelf","pantry")
-# # databaisse.execute(top_pantry)
-# # p top_pantry
-
-# new_stock(databaisse,"Thyme","Herb","1")
-# # databaisse.execute(thyme)
-# # p thyme
-
-# new_cuisine(databaisse,"Greek","lemon","olive oil","oregano")
-# # databaisse.execute(greek)
-# # p greek
-
-# food = databaisse.execute("SELECT * FROM ingredients")
-# puts food
-
-
-
-
-# 3.Functions to remove
-#   a. ingredients
-#     i.input: name
-#     ii.output: "DELETE FROM..."etc
-
-# 5.Functions to compare/analyze
-#   a. What can I make with what's here?
-      # i.input:ingredient(s table), cuisines table
-      #   -iterate through cuisines
-      #   -compare all ingredients to trinities
-      #   -on complete match store cuisine name in hash 
-      #     -with value as array of ingredients
-      #   -return hash
-      # ii.output:hash
-#   b. What do I need In order to use x?
-      # i.input:ingredient.name, cuisine table
-      #   -run what can I make with whats here for ingredient
-      #   -store returned hash in "have all things" 
-      #   -iterate through cuisines
-      #   -compare keys from HaTh on match continue
-      #   -else compare ingredient to trinities
-      #   -on match store name of cuisine as key 
-      #     in hash ("don't have all the things")
-      #   -with value as array of all 
-      #     non-ingrediant.name items
-      #   -combine hashes with deliniation of results
-      # ii.output: return hash
-
-
-
-
-
