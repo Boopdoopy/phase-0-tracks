@@ -1,40 +1,14 @@
 require 'sqlite3'
 require './spice_functions'
-require ',/cuisine_data'
+require './cuisine_data'
 
-
-# 1. Create tables
-#   a.ingredients
-#   b.shelves
-#   c.cuisines
-#   d.trinities?
-table_structure = {
-  :'ingredients' => [
-    "type VARCHAR(255),",
-    "shelf_id INTEGER,",
-    "FOREIGN KEY (shelf_id) REFERENCES shelves(id)"
-    ],
-  :'shelves' => [],
-  :'cuisines' => [
-    "father VARCHAR(255),",
-    "son VARCHAR(255),",
-    "holy_ghost VARCHAR(255)"
-    ],
-  :'cuisine_ingredients' => [
-    "cuisine_id INTEGER,",
-    "ingredient_id INTEGER,",
-    "FOREIGN KEY (cuisine_id) REFERENCES cuisines(id)",
-    "FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)"
-  ]
-}
-databaisse = SQLite3::Database.new("spice_manager.db"){include Kitchen}
-# databaisse.results_as_hash = true
+databaisse = SQLite3::Database.new("spice_manager.db")
 #like bouillabaisse get it?
 
 
 
 #make all the tables
-startup_tables = hash_to_table(table_structure)
+startup_tables = hash_to_table(TABLE_STRUCTURE)
 startup_tables.each do |cmd|
   databaisse.execute(cmd)
 end
@@ -51,20 +25,92 @@ end
 #-lists all produce
 #-asks whether things are still good
 
-print "Welcome to Spice Manager!"
-
+print "Welcome to Spice Manager!\n"
+choice = "M"
 until choice == "E"
   choice = menu_template
   case choice
     when "V"
-      choice = menu_template(["Ingredients","Shelves","Cuisines","Main Menu"])
+      sub_choice = menu_template("View Menu",["Ingredients","Shelves","Cuisines","Main Menu"])
+      case sub_choice
+        when "I"
+          print inventory(databaisse)
+        when "S"
+          print inventory(databaisse,"shelves")
+        when "C"
+          print inventory(databaisse,"cuisines")
+        else
+          next
+      end
     when "G"
-      choice = menu_template(["How can I use this?","What can I make with what's here?","Main Menu"])
+      sub_choice = menu_template(["Guide Menu","How can I use this?","What can I make with what's here?","Main Menu"])
+      case choice
+        when "H"
+          input = input_getter("ingredient")
+          shopping_list(databaisse,input)
+        when "W"
+          menu_options(databaisse)
+        else
+          next
+      end
     when "A"
-      choice = menu_template(["","Main Menu"])
+      sub_choice = menu_template("Add Menu",["Ingredient","Shelf","Cuisine","Main Menu"])
+      case sub_choice
+        when "I"
+          name_of_i = input_getter("is the name of the ingredient")
+          type_of_i = input_getter("type of ingredient(spice, oil, herb, produce)")
+          #need function for getting shelf id from name
+          new_stock(databaisse,name_of_i,type_of_i, 1)
+        when "S"
+          shelf_name = input_getter("is the name of the shelf")
+          new_shelf(databaisse, shelf_name)
+        when "C"
+          cusine_name = input_getter("is the name of the cuisine")
+          father = input_getter("first staple ingredient")
+          son = input_getter("second staple ingredient")
+          holy_ghost = input_getter("last staple ingredient")
+          new_cuisine(databaisse, cusine_name,father,son,holy_ghost)
+        else
+          next
+      end
     when "R"
+      sub_choice = menu_template("Remove Menu",["Ingredient","Shelf","Cuisine","Main Menu"])
+      case sub_choice
+        when "I"
+          name_of_i = input_getter("is the name of the ingredient")
+          delete(databaisse,name_of_i,"ingredients")
+        when "S"
+          shelf_name = input_getter("is the name of the shelf")
+          delete(databaisse,shelf_name,"shelves")
+        when "C"
+          cusine_name = input_getter("is the name of the cuisine")
+          delete(databaisse,cusine_name,"cuisines")
+        else
+          next
+      end
     when "F"
+      sub_choice = menu_template("Find Menu",["Do I have?","Where is?", "Main Menu"])
+      case choice
+        when "D"
+          input = input_getter("ingredient")
+          response = do_i_have(databaisse,input)
+          if response == true
+            here = where_is(input)
+            print "Yup, and it's #{here}"
+          else
+            print "/n Nope"
+          end
+        when "W"
+          input = input_getter("ingredient")
+          print where_is(input)
+
+        else
+          next
+      end
+
     when "E"
+      print "Remember to clean out your fridge!\nRotting produce will make your whole fridge taste bad!"
+      next
     else
       puts "ERROR"
       next

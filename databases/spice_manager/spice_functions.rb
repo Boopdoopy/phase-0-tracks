@@ -2,7 +2,7 @@ def hash_to_table(tables)
     create_table_array = Array.new
     content_string = String.new
     tables.each do |table_name,columns|
-      content_string = "CREATE TABLE IF NOT EXISTS #{table_name}(id INTEGER PRIMARY KEY,name VARCHAR(255),"
+      content_string = "CREATE TABLE IF NOT EXISTS #{table_name}(id INTEGER PRIMARY KEY,name VARCHAR(255)"
           columns.each do |column_name|
             content_string << column_name
           end
@@ -12,7 +12,7 @@ def hash_to_table(tables)
     return create_table_array
 end 
 
-module Kitchen
+
 
 def new_shelf(db, shelf_name)
   db.execute("INSERT INTO shelves(name) VALUES (\"#{shelf_name}\")")
@@ -139,16 +139,11 @@ def shopping_list(db, lonely_ingr)
   end
   result_hash
 end
-end
 
-def menu_template (array_options=[
-    "View",
-    "Guide",
-    "Add",
-    "Remove",
-    "Find",
-    "Exit"
-  ])
+def menu_template (menu_title="Main Menu", array_options=[
+    "View","Guide","Add",
+    "Remove","Find","Exit"
+    ])
   border = "\n-----------------------------------------------------"
   prompt = "\nHow can I help you?\n"
 
@@ -156,21 +151,26 @@ def menu_template (array_options=[
     prompt += option.insert(1,")").insert(0," (")
     prompt += " |"
     end
+  print menu_title
   print border
   print prompt
   print border
+  print "\nINPUT: "
   gets.chomp!.upcase
 end
 
-
+def input_getter(input_type)
+  print "What #{input_type}?\nINPUT: "
+  gets.chomp!.downcase
+end
 
 
 
 
 #My tester wrapper=====================
-class Tester
-  include Kitchen
-end
+# class Tester
+#   include Kitchen
+# end
 #My tester wrapper=====================
 
 # 3.Functions to remove
