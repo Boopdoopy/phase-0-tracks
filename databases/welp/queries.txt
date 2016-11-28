@@ -1,0 +1,13 @@
+Worked with Jack Dagley on this pairing challenge
+
+
+sqlite> SELECT users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment FROM reviews JOIN businesses ON reviews.business_id=businesses.id
+   ...> JOIN users ON reviews.user_id=users.id;
+Teresa|Sandoval|Toys R Us|4|great liquor
+Rick|Rickles|Larry's Plumbing|2|this place sucked
+Teresa|Sandoval|Dunkin Donuts|3|very average
+sqlite>
+
+
+...> JOIN users ON reviews.user_id=users.id WHERE businesses.name="Larry's Plumbing";
+Rick|Rickles|Larry's Plumbing|2|this place sucked
