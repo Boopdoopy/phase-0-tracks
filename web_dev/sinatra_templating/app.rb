@@ -24,4 +24,22 @@ post '/students' do
   redirect '/'
 end
 
+get '/grade' do
+  db.results_as_hash = false
+  rng_array=db.execute("SELECT students.age FROM students")
+  @grades = "Your real grade is #{rng_array.flatten.shuffle.pop}"
+  erb :grade
+end
+
+# post '/grade/rng' do
+
+# end
+
+
+# post '/grade' do
+ 
+# end
+
+
+
 # add static resources
