@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grades!</title>
+</head>
+<body>
+  <h1>Get your grades!</h1>
+  <p>Steaming hot grades, fresh off the printer!!!!</p>
+
+  <button type="submit" method="post" action="/grade/rng">
+  Click here!
+  </button>
+  <div>
+    <%grade="Your grade is #{@grade}!"%>
+    <% if @grade<50
+        grade<<"<br>YOU FAILEDDD"
+       else
+        grade<<"<br>WELCOME TO PHASE 30"
+      end%>
+
+  <h1 id="grade">
+    <%=grade%>
+  </h1>
+  </div>
+<style>
+  #grade{
+    font-size: xx-large;
+    font-family: sans-serif;
+  }
+
+</style>
+</body>
+</html>
