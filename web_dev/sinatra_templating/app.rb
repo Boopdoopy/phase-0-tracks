@@ -25,21 +25,40 @@ post '/students' do
 end
 
 get '/grade' do
-  db.results_as_hash = false
-  rng_array=db.execute("SELECT students.age FROM students")
-  @grades = "Your real grade is #{rng_array.flatten.shuffle.pop}"
+  @grades = 100
+  @message = "What you wish your grade was: "
   erb :grade
 end
 
-# post '/grade/rng' do
+get '/grade/real' do
+  # db.results_as_hash = false
+  # rng_array=db.execute("SELECT students.age FROM students")
+  puts "This is GET /grade/real"
+  @grades = Random.rand(1..100)
+  @message = "What your ACTUAL grade is: "
+  puts "@grades is #{@grades}"
+  erb :grade
+end
 
-# end
+get '/grade/grade/real' do
+  redirect '/grade/real'
+end
 
+#rrich:Don't want to take credit for my pairs solo work which follows
+#---------------------------------------
+get '/campus' do 
+  @campuses = db.execute("SELECT name, ABR FROM campuses")
+  erb :campus
+end
 
-# post '/grade' do
- 
-# end
-
+post '/campus' do
+  campus = params['campus']
+  abbr = params['abbr']
+  puts "NAME: #{campus}"
+  puts "ABBR: #{abbr}"
+  db.execute("INSERT INTO campuses (name, ABR) VALUES (?,?)",[campus, abbr])
+  redirect '/campus'
+end
 
 
 # add static resources
