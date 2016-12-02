@@ -6,10 +6,13 @@
   div h1{
     font-size: xx-large;
     font-family: sans-serif;
-    color:white;
   }
   button{
-    background-color:green;
+    background-color:red;
+    color: white;
+    font-size: 2.5em;
+    width: 500px;
+    height: 100px;
   }
 </style>
 </head>
@@ -18,12 +21,12 @@
     <p>Steaming hot grades, fresh off the printer!!!!</p>
   <div>
     <h2>
-    What you wish your grade was:100
+    <%=@message%>
+    <%=@grades%>
         </h2>
-    <form>
-    <button type="submit" method="post" action="/grade/rng">your real grade</button>
+    <form method="get" action="grade/real">
+    <button type="submit">your real grade</button>
     </form>
-    <h1><%=@grades%><h1>
   </div>
 </body>
 
