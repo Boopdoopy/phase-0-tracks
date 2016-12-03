@@ -1,0 +1,15 @@
+h1{
+  background-color: #F5F5f3;
+  font-family: sans-serif;
+  text-align: center;
+
+}
+p {
+  font-family: serif;
+}
+
+
+p.hiding {
+  display:none;
+}
+
