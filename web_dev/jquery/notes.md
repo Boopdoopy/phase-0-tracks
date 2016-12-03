@@ -28,8 +28,25 @@ Things I will need
   -fn.Load?
   -modify iframes, offset parent <-----could be fun with google survey
 
-+15min second read through with a focus on finding inspiration for challenges/clearing up questions
+NOTE: modified plan switching research with second read through, makes more sense
 +15min research answers to questions that remain, cheat sheet searches
+
+  -window opens a contained scope path to jquery(or w/e other doc)
+  -Use $() to make jquery objects
+  -Sizzle is a selection function library (only necessary if you don't need all of jquery)
+  -Tween is an animation function library (adds key frames, transforms etc etc)
+  -Ajax is a Http request function library
+  -Should do $(document).ready(function{}); to make sure doc is ready to be modified
+  -Can search for classes with $.filter('class name')
+  -Can select/modify elements with $('<element>')
+  -Can add a variety of event handlers EXAMPLE:
+      $( 'li' ).on( 'click', function( event ) {
+        console.log( 'clicked', $( this ).text() );
+      });
+      can unbind after!!!
+
++15min second read through with a focus on finding inspiration for challenges/clearing up questions
+
 +5min pick 3-5 idea's to implement
 
 break
