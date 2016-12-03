@@ -10,6 +10,24 @@ Things I will need
 *******************************
 
 +15min quickly read through the jquery.js file taking notes on interesting functionality/questions
+  -uses window heavily
+  -simplifies function syntax (very similar to ruby)
+  -grep like cmdline
+  -proxy? bind to context
+  -can use to modify css easier
+    -adjustCSS function
+    -Hooks?
+    -ShowHide
+  -Psuedos? like psuedo selectors?
+  -Sizzle?
+  -Initialize jquery object? necessary to use functionality?
+  -handlers? like event listeners?
+  -Tween?
+  -modifyClass <---useful
+  -Ajax?
+  -fn.Load?
+  -modify iframes, offset parent <-----could be fun with google survey
+
 +15min second read through with a focus on finding inspiration for challenges/clearing up questions
 +15min research answers to questions that remain, cheat sheet searches
 +5min pick 3-5 idea's to implement
