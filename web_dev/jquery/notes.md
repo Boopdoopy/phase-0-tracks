@@ -71,6 +71,8 @@ pop. page
   -$() to create new p element and select it
   -fill with Lorem
   -remove listener (enable new listener)
+  ///////////
+  Note: Easier to have already there and modify class to un-hide
 
 rainbow text on buttonpress
   -$() to select text
@@ -82,6 +84,11 @@ header follows on scroll
   -$() to select header
   -$().scroll() to change styling of header to fixed? need to check on that
   NOTE: remember to check what side-effects there are
+
+********************************
+-Did not go as planned, got very confused by differences in syntax and the necessity to nest function() objects
+-Ultimately settled for getting a working listener which I DID! Though it took timeboxing time +20 minutes :/. I am glad that I found the resources that I did and I've saved the examples that ultimately let me figure it out.
+-Definitely an example of over designing :/ I should get my hands dirty as soon as possible and iterate.
 
 
 
