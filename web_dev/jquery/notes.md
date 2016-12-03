@@ -46,8 +46,16 @@ NOTE: modified plan switching research with second read through, makes more sens
       can unbind after!!!
 
 +15min second read through with a focus on finding inspiration for challenges/clearing up questions
+  Ideas
+  -populate page on click
+  -rainbow text on mouseover
+  -header follows on scroll
+  -reverse all of the text on button click
 
 +5min pick 3-5 idea's to implement
+  -populate page on click
+  -rainbow text on mouseover
+  -header follows on scroll
 
 break
 
@@ -57,6 +65,23 @@ Loop (3-5 times)
 +5min notes on new questions
 
 ********************************
+
+pop. page
+  -$().click() to listen for click
+  -$() to create new p element and select it
+  -fill with Lorem
+  -remove listener (enable new listener)
+
+rainbow text on buttonpress
+  -$() to select text
+  -the rainbow function we made in our pairing session
+
+header follows on scroll
+  -create the header html
+  -add simple styling
+  -$() to select header
+  -$().scroll() to change styling of header to fixed? need to check on that
+  NOTE: remember to check what side-effects there are
 
 
 
