@@ -69,3 +69,27 @@ get '/add/:num1/:num2' do
   sum = num1 + num2
   sum.to_s
 end
+
+get '/search' do
+  search = "<form action='/result' method='post'>
+        <select name='campus'>
+        Campus roster for:<br>
+        <option value='NYC'>New York</option>
+        <option value='SEA'>Seattle</option>
+        <option value='SF'>San Francisco</option>
+        <option value='SD'>San Diego</option>
+        <option value='CHI'>Chicago</option>
+        </select>
+        <input type='submit'>
+        </form>"
+end
+
+post '/result' do
+  db.results_as_hash = false
+  cmd = "SELECT students.name FROM students WHERE campus= '#{params[:campus]}'"
+  result = db.execute(cmd)
+  result.flatten.map! do |student|
+    student << "<br>"
+  end
+  result.join("")
+end
