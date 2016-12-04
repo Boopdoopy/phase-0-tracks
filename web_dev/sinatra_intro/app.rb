@@ -44,3 +44,52 @@ get '/students/:id' do
   student = db.execute("SELECT * FROM students WHERE id=?", [params[:id]])[0]
   student.to_s
 end
+
+get '/contact' do
+  contact_address = '1234 Fake street, Fakerton, Illinois, 60606'
+  contact_address
+
+end
+
+get '/great_job' do
+  user_name = "#{params[:name]}"
+  user_name.to_s
+  great_job = "Great job"
+    if user_name.empty?
+      great_job
+    else
+      great_job << ", " << user_name
+    end
+    great_job << "!"
+end
+
+get '/add/:num1/:num2' do
+  num1 = "#{params[:num1]}".to_i
+  num2 = "#{params[:num2]}".to_i
+  sum = num1 + num2
+  sum.to_s
+end
+
+get '/search' do
+  search = "<form action='/result' method='post'>
+        <select name='campus'>
+        Campus roster for:<br>
+        <option value='NYC'>New York</option>
+        <option value='SEA'>Seattle</option>
+        <option value='SF'>San Francisco</option>
+        <option value='SD'>San Diego</option>
+        <option value='CHI'>Chicago</option>
+        </select>
+        <input type='submit'>
+        </form>"
+end
+
+post '/result' do
+  db.results_as_hash = false
+  cmd = "SELECT students.name FROM students WHERE campus= '#{params[:campus]}'"
+  result = db.execute(cmd)
+  result.flatten.map! do |student|
+    student << "<br>"
+  end
+  result.join("")
+end
